@@ -1,0 +1,2130 @@
+@prefix ex: <http://example.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix schema1: <http://schema.org/> .
+@prefix sioc: <http://rdfs.org/sioc/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Twitter a ex:Platform ;
+    schema1:name "Twitter" .
+
+<http://example.org/claim/005f2d2064> a ex:Claim ;
+    ex:canonicalForm "Going to Switzerland is too much hassle" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576342675290497024> .
+
+<http://example.org/claim/00b52ad808> a ex:Claim ;
+    ex:canonicalForm "Kabaeva was pregnant" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576326173615063040> .
+
+<http://example.org/claim/00f2a14d98> a ex:Claim ;
+    ex:canonicalForm "Maybe just vacationing in Eastern Ukraine" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576239078615592961> .
+
+<http://example.org/claim/01a0e64738> a ex:Claim ;
+    ex:canonicalForm "There is no factual basis for speculating about Putin's reaction." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576323427503591426> .
+
+<http://example.org/claim/02043a67ab> a ex:Claim ;
+    ex:canonicalForm "The tweet suggests a comparison between Britain's current situation and that of the former Soviet Union." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576360212816375808> .
+
+<http://example.org/claim/023223401e> a ex:Claim ;
+    ex:canonicalForm "The Swiss Clinic Sant'Anna of Sorengo confirmed the birth" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576356967373004800> .
+
+<http://example.org/claim/042898568d> a ex:Claim ;
+    ex:canonicalForm "Putin's absence from an event in Switzerland may be related to his girlfriend giving birth." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576320540983582720> .
+
+<http://example.org/claim/045f9b94d9> a ex:Claim ;
+    ex:canonicalForm "#putindead may be a threat to Vladimir Putin's life" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576181101577703424> .
+
+<http://example.org/claim/0853ea69e3> a ex:Claim ;
+    ex:canonicalForm "There is speculation about Putin's death" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576175612336992257> .
+
+<http://example.org/claim/08a0c3675d> a ex:Claim ;
+    ex:canonicalForm "nema shto da mi go kaže da si lep" ;
+    ex:hasLanguage "sr" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576531327694057472> .
+
+<http://example.org/claim/0997f89b55> a ex:Claim ;
+    ex:canonicalForm "Putin may be absent due to a potential palace coup in Moscow." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576225987119198208> .
+
+<http://example.org/claim/09d33c9420> a ex:Claim ;
+    ex:canonicalForm "Allegedly, Alina Kabaeva gave birth to a child in Switzerland." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576338963390148608> .
+
+<http://example.org/claim/0a197ad34d> a ex:Claim ;
+    ex:canonicalForm "Putin's absence from the G20 is allegedly due to a personal matter, specifically the birth of his girlfriend's child in Ticino." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576371148511809537> .
+
+<http://example.org/claim/0a7fad5be3> a ex:Claim ;
+    ex:canonicalForm "Putin is absent due to his girlfriend Alina giving birth in Ticino" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576319832800555008> .
+
+<http://example.org/claim/0d9a51bb55> a ex:Claim ;
+    ex:canonicalForm "A baby girl was born but later identified as male." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576432511649202176> .
+
+<http://example.org/claim/0dd9608d0d> a ex:Claim ;
+    ex:canonicalForm "The tweet is questioning the choice of a Swiss clinic for giving birth, implying it may be more desirable than giving birth in Russia." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576324320735178752> .
+
+<http://example.org/claim/0de5853f6f> a ex:Claim ;
+    ex:canonicalForm "The color of the child's skin" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576370222573182976> .
+
+<http://example.org/claim/0e9676b089> a ex:Claim ;
+    ex:canonicalForm "The destination of Putin's holiday is Crimea" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576276113288224768> .
+
+<http://example.org/claim/122a126ee3> a ex:Claim ;
+    ex:canonicalForm "Both have proved their flexibility." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576339955598942208> .
+
+<http://example.org/claim/136976961b> a ex:Claim ;
+    ex:canonicalForm "Ivan was a member of the family of Carevic, also known as Carovich" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576322836672995328> .
+
+<http://example.org/claim/139b352443> a ex:Claim ;
+    ex:canonicalForm "No evidence or proof has been presented to support the claim." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576193576993869825> .
+
+<http://example.org/claim/13c2c89755> a ex:Claim ;
+    ex:canonicalForm "Alec's colleague Shitford is considered slimy" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/577116829459578880> .
+
+<http://example.org/claim/14799e39eb> a ex:Claim ;
+    ex:canonicalForm "A potential coup in Russia could lead to an even harder line new regime." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576213134861451264> .
+
+<http://example.org/claim/150a30d775> a ex:Claim ;
+    ex:canonicalForm "Something crazier has happened" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576324010025349120> .
+
+<http://example.org/claim/164698f8c1> a ex:Claim ;
+    ex:canonicalForm "Might explain absence from public life last few days" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576322113876992000> .
+
+<http://example.org/claim/1826ee6515> a ex:Claim ;
+    ex:canonicalForm "Putin reportedly already has a baby born." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576341809812623360> .
+
+<http://example.org/claim/1a31c529f2> a ex:Claim ;
+    ex:canonicalForm "The Russian government has downplayed the severity of Vladimir Putin's health issues." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576432032957341696> .
+
+<http://example.org/claim/1b684fd13d> a ex:Claim ;
+    ex:canonicalForm "There is no factual information provided in the text." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/577894532194443264> .
+
+<http://example.org/claim/1c49e43c94> a ex:Claim ;
+    ex:canonicalForm "Huylo" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321856166346752> .
+
+<http://example.org/claim/1e841a6809> a ex:Claim ;
+    ex:canonicalForm "@Jagarchefen Eller hur? \"Und dann kommt doch alles anders als man denkt." ;
+    ex:hasLanguage "und" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576324250543525889> .
+
+<http://example.org/claim/1f257c3d20> a ex:Claim ;
+    ex:canonicalForm "The operation is planned by dissidents within Russia" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576279839205818368> .
+
+<http://example.org/claim/1fdd5894b0> a ex:Claim ;
+    ex:canonicalForm "There is no information about the birth of Vladimir Putin's son." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321916593659904> .
+
+<http://example.org/claim/200898d9c3> a ex:Claim ;
+    ex:canonicalForm "The goal of the operation is to overthrow Putin's government" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576279839205818368> .
+
+<http://example.org/claim/2189c055ef> a ex:Claim ;
+    ex:canonicalForm "Nemtsov's death may be a concern for #SecurityConcerns in Moscow." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576341114610929664> .
+
+<http://example.org/claim/21b80de6c0> a ex:Claim ;
+    ex:canonicalForm "Russian medical facilities are in poor condition." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576336207203856385> .
+
+<http://example.org/claim/2292f61af7> a ex:Claim ;
+    ex:canonicalForm "There is skepticism about Putin being in Switzerland with Kabayeva" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576326555246415872> .
+
+<http://example.org/claim/266465e250> a ex:Claim ;
+    ex:canonicalForm "US Embassy cables mention a potential coup against Putin" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576279839205818368> .
+
+<http://example.org/claim/2977ebb1a6> a ex:Claim ;
+    ex:canonicalForm "The given text expresses a personal preference for a theory." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576341311411847168> .
+
+<http://example.org/claim/2c70b34e0c> a ex:Claim ;
+    ex:canonicalForm "Russian President Vladimir Putin is expected to be ousted in a coup" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576325381990535169> .
+
+<http://example.org/claim/2e0db5cb62> a ex:Claim ;
+    ex:canonicalForm "@christogrozev might explain absence from public life last few days" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576322113876992000> .
+
+<http://example.org/claim/30bbdb2842> a ex:Claim ;
+    ex:canonicalForm "Putin's absence is due to his girlfriend Alina giving birth" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321555384401920> .
+
+<http://example.org/claim/34458e0882> a ex:Claim ;
+    ex:canonicalForm "@AmDefNews Fingers crossed." ;
+    ex:hasLanguage "und" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576441584784252929> .
+
+<http://example.org/claim/34467da752> a ex:Claim ;
+    ex:canonicalForm "The publisher of the Blick newspaper is not credible." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576327374628917248> .
+
+<http://example.org/claim/34bd232541> a ex:Claim ;
+    ex:canonicalForm "The speaker considers the theory's probability to be low." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576341311411847168> .
+
+<http://example.org/claim/34dd390241> a ex:Claim ;
+    ex:canonicalForm "There are no claims to extract from the given text." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576336711376056320> .
+
+<http://example.org/claim/3731aecae4> a ex:Claim ;
+    ex:canonicalForm "Kadyrov has Russian and Chechen nationality" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576278902185705472> .
+
+<http://example.org/claim/3dbdf181b0> a ex:Claim ;
+    ex:canonicalForm "Media speculation can lead to spreading hysteria." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576320730553405440> .
+
+<http://example.org/claim/409bae7c65> a ex:Claim ;
+    ex:canonicalForm "Putin was not mentioned to be sleepless or having a child." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576323427503591426> .
+
+<http://example.org/claim/4259f3e263> a ex:Claim ;
+    ex:canonicalForm "The Kremlin denied a report about a baby story." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576435146632605696> .
+
+<http://example.org/claim/439cdf6ee8> a ex:Claim ;
+    ex:canonicalForm "Alina Kabayeva is rumored to have given birth in Switzerland" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576345238857449472> .
+
+<http://example.org/claim/449806b5d1> a ex:Claim ;
+    ex:canonicalForm "Kabayeva has a child born outside of New York." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576355637229154304> .
+
+<http://example.org/claim/458a0d5327> a ex:Claim ;
+    ex:canonicalForm "I'm not aware of any additional context or information in the text." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576307573806260224> .
+
+<http://example.org/claim/47810e2ab0> a ex:Claim ;
+    ex:canonicalForm "Reports emerged of a potential palace coup against Russian President Vladimir Putin." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576191681827057664> .
+
+<http://example.org/claim/4be414827f> a ex:Claim ;
+    ex:canonicalForm "Alina Kabaeva allegedly gave birth to a child in Switzerland" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576338374925164544> .
+
+<http://example.org/claim/4caeffa6dd> a ex:Claim ;
+    ex:canonicalForm "I've just arrived, &amp; only staying a few minutes :)." ;
+    ex:hasLanguage "und" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576434048882606080> .
+
+<http://example.org/claim/4d7c9b7c5b> a ex:Claim ;
+    ex:canonicalForm "Rumours are swirling that Russian President Vladimir Putin's health is deteriorating" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576325381990535169> .
+
+<http://example.org/claim/4ee7019c3c> a ex:Claim ;
+    ex:canonicalForm "When the West speculated about the health of Soviet leaders, there was a similar #PutinDead speculation." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576344015458570240> .
+
+<http://example.org/claim/5150ed269b> a ex:Claim ;
+    ex:canonicalForm "Vladimir Putin may be absent from public duties." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576327507093360640> .
+
+<http://example.org/claim/5357409aac> a ex:Claim ;
+    ex:canonicalForm "Some people think it's reasonable that a certain person went to Switzerland for medical treatment." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576336207203856385> .
+
+<http://example.org/claim/57142d5aee> a ex:Claim ;
+    ex:canonicalForm "Putin has been absent from public appearances, leading to speculation about his health and potential succession." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576231309254721536> .
+
+<http://example.org/claim/5b39673414> a ex:Claim ;
+    ex:canonicalForm "There is no factual information in this text to extract." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576238005951811584> .
+
+<http://example.org/claim/5c15534423> a ex:Claim ;
+    ex:canonicalForm "The primary role of the media is to report facts, not speculate." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576320730553405440> .
+
+<http://example.org/claim/5c4585524d> a ex:Claim ;
+    ex:canonicalForm "Putin was absent from a recent event possibly due to his girlfriend giving birth" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576319319681937408> .
+
+<http://example.org/claim/624299c69d> a ex:Claim ;
+    ex:canonicalForm "Reports of Putin's death are circulating online in Russia." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576192621351145472> .
+
+<http://example.org/claim/62666ca470> a ex:Claim ;
+    ex:canonicalForm "Alec's colleague Wanker is also seen as untrustworthy by some" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/577116829459578880> .
+
+<http://example.org/claim/6307b73010> a ex:Claim ;
+    ex:canonicalForm "e ubava e brat" ;
+    ex:hasLanguage "sr" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576531327694057472> .
+
+<http://example.org/claim/63ea5b0665> a ex:Claim ;
+    ex:canonicalForm "Nik Twick was referred to as a 'dickhead'" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576357631117434881> .
+
+<http://example.org/claim/65caaf4389> a ex:Claim ;
+    ex:canonicalForm "There are no factual claims in the provided text." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576337741455093760> .
+
+<http://example.org/claim/685b5c7262> a ex:Claim ;
+    ex:canonicalForm "@StrebelLuca thanks man, keep an eye out!." ;
+    ex:hasLanguage "und" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576327216243564544> .
+
+<http://example.org/claim/69a6adbe17> a ex:Claim ;
+    ex:canonicalForm "Dodonov has a taste" ;
+    ex:hasLanguage "en",
+        "sr" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576531814904385536> .
+
+<http://example.org/claim/69c6ba4340> a ex:Claim ;
+    ex:canonicalForm "If Putin remains out of sight for another week, it is likely due to either a palace coup or the effect of EU sanctions." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576272369091756032> .
+
+<http://example.org/claim/6abac2a2e4> a ex:Claim ;
+    ex:canonicalForm "This appears to be the original source of the Putin/Kabayeva/Swiss clinic rumour" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576323086888361984> .
+
+<http://example.org/claim/6af901d47f> a ex:Claim ;
+    ex:canonicalForm "The link provided is to an article or blog post about Andrei Illarionov" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576327925869506560> .
+
+<http://example.org/claim/6c3539d6af> a ex:Claim ;
+    ex:canonicalForm "She does not trust doctors in Russia" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576342185941020674> .
+
+<http://example.org/claim/6cf4c01690> a ex:Claim ;
+    ex:canonicalForm "Threatening to start a global conflict puts one's life at risk" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576181101577703424> .
+
+<http://example.org/claim/6da5ee4aa4> a ex:Claim ;
+    ex:canonicalForm "Alina Kabaeva, Putin's girlfriend, is reportedly giving birth in Ticino, Switzerland." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576320540983582720> .
+
+<http://example.org/claim/70fa5c58a0> a ex:Claim ;
+    ex:canonicalForm "Military helicopters were spotted flying over Moscow" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576175612336992257> .
+
+<http://example.org/claim/7152fa234d> a ex:Claim ;
+    ex:canonicalForm "There are rumors of a palace coup in Russia" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576238790936662017> .
+
+<http://example.org/claim/72db970a14> a ex:Claim ;
+    ex:canonicalForm "Alina Kabayeva gave birth to a baby girl" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576356967373004800> .
+
+<http://example.org/claim/73ea6981e1> a ex:Claim ;
+    ex:canonicalForm "Putin is absent from the public eye." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576248645365846016> .
+
+<http://example.org/claim/78833bd8c3> a ex:Claim ;
+    ex:canonicalForm "Rumors suggest Putin's absence from a recent event is due to his girlfriend, Alina Kabaeva, giving birth in Switzerland." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576319105965359105> .
+
+<http://example.org/claim/78ca645ac8> a ex:Claim ;
+    ex:canonicalForm "There are rumors of a palace coup in Moscow, with Putin's absence being seen as a possible indication of this." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576231309254721536> .
+
+<http://example.org/claim/796f3ba1af> a ex:Claim ;
+    ex:canonicalForm "Додонов имеет вкус" ;
+    ex:hasLanguage "ru" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576531814904385536> .
+
+<http://example.org/claim/79bcab61ec> a ex:Claim ;
+    ex:canonicalForm "Looks fake" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576432008987062272> .
+
+<http://example.org/claim/7a27076227> a ex:Claim ;
+    ex:canonicalForm "The account @AnnetteLatour reappears after a while when Putin is no longer in focus" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576324105445777408> .
+
+<http://example.org/claim/7bc7b83151> a ex:Claim ;
+    ex:canonicalForm "Starting a global conflict, specifically World War III, is highly likely to result in severe consequences for those responsible" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576181101577703424> .
+
+<http://example.org/claim/7cd22ecf67> a ex:Claim ;
+    ex:canonicalForm "There is no claim to summarize." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576324695420743680> .
+
+<http://example.org/claim/7d3b43307c> a ex:Claim ;
+    ex:canonicalForm "Putin's reaction to seeing a child" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576370222573182976> .
+
+<http://example.org/claim/7fb8dcf19f> a ex:Claim ;
+    ex:canonicalForm "Mr Putin is a good leader" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321273594294272> .
+
+<http://example.org/claim/8115a5fe60> a ex:Claim ;
+    ex:canonicalForm "Tokigare saker har hänt" ;
+    ex:hasLanguage "sv" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576324010025349120> .
+
+<http://example.org/claim/82c7dd5b2c> a ex:Claim ;
+    ex:canonicalForm "There may be a coup in Russia." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576276947648405505> .
+
+<http://example.org/claim/84ff87d6f0> a ex:Claim ;
+    ex:canonicalForm "Vladimir Putin's girlfriend has given birth in Ticino, Switzerland." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576327507093360640> .
+
+<http://example.org/claim/875ec9c0db> a ex:Claim ;
+    ex:canonicalForm "The film Rosemary's Baby has been mentioned" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576348301940932608> .
+
+<http://example.org/claim/88ef539476> a ex:Claim ;
+    ex:canonicalForm "A palace coup is considered one possible explanation for Putin's disappearance from public view." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576272369091756032> .
+
+<http://example.org/claim/8970564be6> a ex:Claim ;
+    ex:canonicalForm "The incident may be a form of military deception (maskirovka)" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576175612336992257> .
+
+<http://example.org/claim/89e81188d5> a ex:Claim ;
+    ex:canonicalForm "Evidence against COVID-19 measures is thin" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576327082436927488> .
+
+<http://example.org/claim/8d6606ac5c> a ex:Claim ;
+    ex:canonicalForm "There are reports of Vladimir Putin's health issues." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576338406088687616> .
+
+<http://example.org/claim/8e597c66f5> a ex:Claim ;
+    ex:canonicalForm "@ASLuhn @StrebelLuca haven't see him either ;)." ;
+    ex:hasLanguage "und" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576439877841121280> .
+
+<http://example.org/claim/913159dd8f> a ex:Claim ;
+    ex:canonicalForm "Berlusconi is in Northern Italy" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576348470891683842> .
+
+<http://example.org/claim/926f6a816f> a ex:Claim ;
+    ex:canonicalForm "Andrei Illarionov is not considered a reliable source" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576327925869506560> .
+
+<http://example.org/claim/93854c8447> a ex:Claim ;
+    ex:canonicalForm "Not having Angela Merkel as leader is better than having her." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576330432750440448> .
+
+<http://example.org/claim/94998084aa> a ex:Claim ;
+    ex:canonicalForm "There are news reports of Putin's absence due to his girlfriend giving birth." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321889276207105> .
+
+<http://example.org/claim/94a4a9eaa3> a ex:Claim ;
+    ex:canonicalForm "The tweet does not contain any claims or statements." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576330194312511488> .
+
+<http://example.org/claim/95404725fd> a ex:Claim ;
+    ex:canonicalForm "Putin has taken a fishing holiday" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576276113288224768> .
+
+<http://example.org/claim/956e1d7c9d> a ex:Claim ;
+    ex:canonicalForm "Christ Grozev was born on Friday the 13th" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576325058022494208> .
+
+<http://example.org/claim/95c371b6d9> a ex:Claim ;
+    ex:canonicalForm "The hashtag #putindead is currently trending on Russian social media." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576192621351145472> .
+
+<http://example.org/claim/98561e770a> a ex:Claim ;
+    ex:canonicalForm "A boy has been born" ;
+    ex:hasLanguage "it" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321886575017984> .
+
+<http://example.org/claim/98cf1ec789> a ex:Claim ;
+    ex:canonicalForm "Rumors suggest that Putin has a newborn child." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576341809812623360> .
+
+<http://example.org/claim/9a0aa3334a> a ex:Claim ;
+    ex:canonicalForm "Kadyrov has ties to the 'United Russia' party and the FSB (successor of the KGB)" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576278902185705472> .
+
+<http://example.org/claim/9b393c7f47> a ex:Claim ;
+    ex:canonicalForm "There is speculation that Putin's health may be more serious than reported by the Russian government." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576432032957341696> .
+
+<http://example.org/claim/a0c0a8964c> a ex:Claim ;
+    ex:canonicalForm "The West has previously speculated on the health of Soviet leaders." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576344015458570240> .
+
+<http://example.org/claim/a184645ac7> a ex:Claim ;
+    ex:canonicalForm "There is a theory that Putin directed Kadyrov to have Nemtsov assassinated." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576281472778182656> .
+
+<http://example.org/claim/a27c401cd0> a ex:Claim ;
+    ex:canonicalForm "Alina Kabaeva, possibly linked to Vladimir Putin, is expecting a child." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576327863802138624> .
+
+<http://example.org/claim/a40bafaee0> a ex:Claim ;
+    ex:canonicalForm "Blick is a tabloid newspaper." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576327374628917248> .
+
+<http://example.org/claim/a425217c7b> a ex:Claim ;
+    ex:canonicalForm "Some people believe Putin was being controlled by the FSB or Kadyrov at the time of the assassination." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576281472778182656> .
+
+<http://example.org/claim/a4515c57c2> a ex:Claim ;
+    ex:canonicalForm "The Russian government has made public statements denying any major health concerns about Putin." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576432032957341696> .
+
+<http://example.org/claim/a5634bc347> a ex:Claim ;
+    ex:canonicalForm "Vladimir Putin is reportedly absent from duties because his girlfriend has had a baby." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321889276207105> .
+
+<http://example.org/claim/a5f8c4ee55> a ex:Claim ;
+    ex:canonicalForm "Putin was hiding, not deceased." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576218291909214209> .
+
+<http://example.org/claim/a6d188723a> a ex:Claim ;
+    ex:canonicalForm "Mr Putin is a great president" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321273594294272> .
+
+<http://example.org/claim/a7f4e15826> a ex:Claim ;
+    ex:canonicalForm "Russia's economy is improving under Mr Putin" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321273594294272> .
+
+<http://example.org/claim/a84bbe4087> a ex:Claim ;
+    ex:canonicalForm "An article by Forbes discusses a possible coup in Russia." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576276947648405505> .
+
+<http://example.org/claim/a92e8842f0> a ex:Claim ;
+    ex:canonicalForm "Putin's absence may indicate a palace coup in Moscow." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576330947588558849> .
+
+<http://example.org/claim/a9f96d903b> a ex:Claim ;
+    ex:canonicalForm "Putin is in Switzerland with Kabayeva" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576326555246415872> .
+
+<http://example.org/claim/ab949f4866> a ex:Claim ;
+    ex:canonicalForm "@AnnetteLatour deletes its tweets when Putin is not in the news" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576324105445777408> .
+
+<http://example.org/claim/ae4bc68dfb> a ex:Claim ;
+    ex:canonicalForm "There are rumors of a potential palace coup in Russia, with some speculating that Vladimir Putin's leadership may be threatened." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576204915694964737> .
+
+<http://example.org/claim/af7d485ff7> a ex:Claim ;
+    ex:canonicalForm "Alina Kabaeva gave birth in Ticino, Switzerland" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576319319681937408> .
+
+<http://example.org/claim/afc1ee66eb> a ex:Claim ;
+    ex:canonicalForm "Vladimir Putin has been absent from public view" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576238790936662017> .
+
+<http://example.org/claim/b19ef5bddb> a ex:Claim ;
+    ex:canonicalForm "There is speculation about the birth of Putin's child in Ticino, Switzerland." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576341809812623360> .
+
+<http://example.org/claim/b238f02a5f> a ex:Claim ;
+    ex:canonicalForm "The language of the tweets appears to be Russian." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/577894532194443264> .
+
+<http://example.org/claim/b2a3fb756a> a ex:Claim ;
+    ex:canonicalForm "Alec is terminally skeptical" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/577116829459578880> .
+
+<http://example.org/claim/b2dab9a5d1> a ex:Claim ;
+    ex:canonicalForm "@L0gg0l @JF991 @russian_market BS." ;
+    ex:hasLanguage "und" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576364935363559424> .
+
+<http://example.org/claim/b37e7f8af2> a ex:Claim ;
+    ex:canonicalForm "Šaulić is the cousin of Miljana Radović." ;
+    ex:hasLanguage "sr" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/577107888868569088> .
+
+<http://example.org/claim/b639f67866> a ex:Claim ;
+    ex:canonicalForm "Putin is absent because his girlfriend has given birth." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576321889276207105> .
+
+<http://example.org/claim/b65a20392c> a ex:Claim ;
+    ex:canonicalForm "Vladimir Putin may be the father of Alina Kabayeva's child" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576345238857449472> .
+
+<http://example.org/claim/b813dce67a> a ex:Claim ;
+    ex:canonicalForm "@AnnetteLatour @christogrozev  Heh." ;
+    ex:hasLanguage "und" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576434048882606080> .
+
+<http://example.org/claim/b87ff85509> a ex:Claim ;
+    ex:canonicalForm "There are rumors of a palace coup in Moscow." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576248645365846016> .
+
+<http://example.org/claim/b9291f0aae> a ex:Claim ;
+    ex:canonicalForm "There is speculation that Putin's absence could indicate a power struggle within the Kremlin." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576225987119198208> .
+
+<http://example.org/claim/ba18c22b6f> a ex:Claim ;
+    ex:canonicalForm "The situation remains unclear and unverified at this time." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576193576993869825> .
+
+<http://example.org/claim/bad28d37fa> a ex:Claim ;
+    ex:canonicalForm "Russians need to reproduce more, citing that there is a lot of unoccupied land" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576378344377298944> .
+
+<http://example.org/claim/bb554c329f> a ex:Claim ;
+    ex:canonicalForm "There is a video of Putin hiding in someone's anus." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576218291909214209> .
+
+<http://example.org/claim/c036e9405e> a ex:Claim ;
+    ex:canonicalForm "The birth is the second reported in relation to Kabayeva." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576355637229154304> .
+
+<http://example.org/claim/c1c2a67434> a ex:Claim ;
+    ex:canonicalForm "The text contains tweets from Twitter handles." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/577894532194443264> .
+
+<http://example.org/claim/c25acfc4b5> a ex:Claim ;
+    ex:canonicalForm "A Russian-speaking person is asking if someone will go skydiving." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576352246394421249> .
+
+<http://example.org/claim/c29e08bc8d> a ex:Claim ;
+    ex:canonicalForm "The nickname of Russian President Vladimir Putin" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576347407836909569> .
+
+<http://example.org/claim/c2b552f4b1> a ex:Claim ;
+    ex:canonicalForm "No information" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576431564084658176> .
+
+<http://example.org/claim/c5344679cd> a ex:Claim ;
+    ex:canonicalForm "Going to Switzerland for medical treatment is seen as unpatriotic by some." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576336207203856385> .
+
+<http://example.org/claim/c74801471b> a ex:Claim ;
+    ex:canonicalForm "EU sanctions could be another reason behind Putin's absence from public life." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576272369091756032> .
+
+<http://example.org/claim/c898e7109a> a ex:Claim ;
+    ex:canonicalForm "@L0gg0l tweeted about Putin's absence and possible reason for it" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576319319681937408> .
+
+<http://example.org/claim/d35a72ed7a> a ex:Claim ;
+    ex:canonicalForm "A rumor that Putin has died is trending on the Russian Internet." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576192621351145472> .
+
+<http://example.org/claim/d3b6007e05> a ex:Claim ;
+    ex:canonicalForm "Ramzan Kadyrov is a Sunni Muslim." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576278902185705472> .
+
+<http://example.org/claim/d63fda06c5> a ex:Claim ;
+    ex:canonicalForm "'Kabayeva will be under big pressure in Switzerland for having a child from Putin'" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576410626253275136> .
+
+<http://example.org/claim/d6727fea92> a ex:Claim ;
+    ex:canonicalForm "The rumors claim that Alina Kabaeva has given birth in Ticino, Switzerland." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576371148511809537> .
+
+<http://example.org/claim/d6dcc1a39e> a ex:Claim ;
+    ex:canonicalForm "Neoconservatives have influence in the US government" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576244606553219072> .
+
+<http://example.org/claim/d7d7a4639c> a ex:Claim ;
+    ex:canonicalForm "Rumors suggest Vladimir Putin's absence from the G20 is due to his girlfriend Alina Kabaeva giving birth in Ticino, Switzerland." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576371148511809537> .
+
+<http://example.org/claim/db14861fd3> a ex:Claim ;
+    ex:canonicalForm "No information available." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576323996028952576> .
+
+<http://example.org/claim/de602fb5ec> a ex:Claim ;
+    ex:canonicalForm "There is currently no confirmation or verification of the claim." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576193576993869825> .
+
+<http://example.org/claim/decc52f860> a ex:Claim ;
+    ex:canonicalForm "Money was spent on Boris Nemtsov to further security concerns." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576341114610929664> .
+
+<http://example.org/claim/e56a90767e> a ex:Claim ;
+    ex:canonicalForm "US neocons supported by Obama" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576244606553219072> .
+
+<http://example.org/claim/e5931497d0> a ex:Claim ;
+    ex:canonicalForm "One can only hope." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576549395287695360> .
+
+<http://example.org/claim/e8bfd525ab> a ex:Claim ;
+    ex:canonicalForm "A Russian merchant of Tver during the 14th century." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576322836672995328> .
+
+<http://example.org/claim/ee7c594c6a> a ex:Claim ;
+    ex:canonicalForm "Boris Nemtsov could have improved security in Russia." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576341114610929664> .
+
+<http://example.org/claim/f1428a7c4a> a ex:Claim ;
+    ex:canonicalForm "Ivan was a member of the court of Grand Duke Mikhail Vasilyevich of Tver." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576322836672995328> .
+
+<http://example.org/claim/f19cbff162> a ex:Claim ;
+    ex:canonicalForm "The source of rumors about Putin/Kabajev/Klinik in Switzerland is an original source." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576851044715642881> .
+
+<http://example.org/claim/f558a8f690> a ex:Claim ;
+    ex:canonicalForm "Kabayeva was rumoured to have delivered a baby in Switzerland" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576344611519614976> .
+
+<http://example.org/claim/f62db48155> a ex:Claim ;
+    ex:canonicalForm "Rumors in Switzerland indicate that Putin's absence is due to his girlfriend giving birth." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576320540983582720> .
+
+<http://example.org/claim/f640186669> a ex:Claim ;
+    ex:canonicalForm "Source: Blick.ch" ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576320562949177344> .
+
+<http://example.org/claim/faa2bfaf34> a ex:Claim ;
+    ex:canonicalForm "Some speculate that a coup may be taking place in Russia due to Putin's alleged illness." ;
+    ex:hasLanguage "en" ;
+    ex:truthStatus "unknown" ;
+    prov:wasDerivedFrom <http://example.org/post/576338406088687616> .
+
+<http://example.org/post/576213134861451264> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/14799e39eb> ;
+    sioc:has_creator <http://example.org/user/2371261604> ;
+    sioc:reply_of <http://example.org/post/576204915694964737> ;
+    schema1:headline "@jsph1959 If a coup would happen in Russia.... then I am really wondering: what will come next? New regime may be even more hardline..." ;
+    prov:generatedAtTime "2015-03-13T02:48:11+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576238005951811584> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/5b39673414> ;
+    sioc:has_creator <http://example.org/user/2835610800> ;
+    schema1:headline "Can Putin's Absence Indicate A Palace Coup In Moscow? http://t.co/y9qchRg3u0 #Leadership #Forbes" ;
+    prov:generatedAtTime "2015-03-13T04:27:01+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576239078615592961> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/00f2a14d98> ;
+    sioc:has_creator <http://example.org/user/17825986> ;
+    sioc:reply_of <http://example.org/post/576231309254721536> ;
+    schema1:headline "@KarstenStrauss @Forbes Maybe just vacationing in Eastern Ukrane?" ;
+    prov:generatedAtTime "2015-03-13T04:31:17+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576307573806260224> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/458a0d5327> ;
+    sioc:has_creator <http://example.org/user/47694125> ;
+    sioc:reply_of <http://example.org/post/576225987119198208> ;
+    schema1:headline "@kssg @Forbes and what else?" ;
+    prov:generatedAtTime "2015-03-13T09:03:27+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576320562949177344> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/f640186669> ;
+    sioc:has_creator <http://example.org/user/376785468> ;
+    sioc:reply_of <http://example.org/post/576319105965359105> ;
+    schema1:headline "@L0gg0l @JF991 @russian_market source: blick.ch" ;
+    prov:generatedAtTime "2015-03-13T09:55:04+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576321555384401920> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/30bbdb2842> ;
+    sioc:has_creator <http://example.org/user/375178685> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "“@russian_market: Swiss Rumors:Putin absence due to girlfriendAlina giving birth http://t.co/RzXpRb0Sfl http://t.co/lzT16jrJap” @fancy_work" ;
+    prov:generatedAtTime "2015-03-13T09:59:00+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576321886575017984> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/98561e770a> ;
+    sioc:has_creator <http://example.org/user/229022520> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @L0gg0l Tutto vero!! Is a boy!" ;
+    prov:generatedAtTime "2015-03-13T10:00:19+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576323996028952576> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/db14861fd3> ;
+    sioc:has_creator <http://example.org/user/2301712239> ;
+    sioc:reply_of <http://example.org/post/576323086888361984> ;
+    schema1:headline "@BBCDanielS plus direct info from the 'fields'!" ;
+    prov:generatedAtTime "2015-03-13T10:08:42+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576324250543525889> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/1e841a6809> ;
+    sioc:has_creator <http://example.org/user/2676385764> ;
+    sioc:reply_of <http://example.org/post/576324010025349120> ;
+    schema1:headline "@Jagarchefen Eller hur? \"Und dann kommt doch alles anders als man denkt...\" @KristinaSyk" ;
+    prov:generatedAtTime "2015-03-13T10:09:43+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576324320735178752> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/0dd9608d0d> ;
+    sioc:has_creator <http://example.org/user/921252660> ;
+    sioc:reply_of <http://example.org/post/576323086888361984> ;
+    schema1:headline "@BBCDanielS But why a Swiss clinic? Why not give birth in Russia? What am I missing here?" ;
+    prov:generatedAtTime "2015-03-13T10:10:00+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576324695420743680> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/7cd22ecf67> ;
+    sioc:has_creator <http://example.org/user/47694125> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @L0gg0l of course,keep dreaming" ;
+    prov:generatedAtTime "2015-03-13T10:11:29+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576325058022494208> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/956e1d7c9d> ;
+    sioc:has_creator <http://example.org/user/2756163184> ;
+    sioc:reply_of <http://example.org/post/576321916593659904> ;
+    schema1:headline "@christogrozev Born on Friday 13th... @AnnetteLatour" ;
+    prov:generatedAtTime "2015-03-13T10:12:56+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576326173615063040> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/00b52ad808> ;
+    sioc:has_creator <http://example.org/user/20754570> ;
+    sioc:reply_of <http://example.org/post/576321916593659904> ;
+    schema1:headline "@christogrozev @AnnetteLatour have anybody ever mentioned that Kabaeva was pregnant?" ;
+    prov:generatedAtTime "2015-03-13T10:17:22+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576327216243564544> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/685b5c7262> ;
+    sioc:has_creator <http://example.org/user/90275200> ;
+    sioc:reply_of <http://example.org/post/576327082436927488> ;
+    schema1:headline "@StrebelLuca thanks man, keep an eye out!" ;
+    prov:generatedAtTime "2015-03-13T10:21:30+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576330194312511488> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/94a4a9eaa3> ;
+    sioc:has_creator <http://example.org/user/137777900> ;
+    sioc:reply_of <http://example.org/post/576327863802138624> ;
+    schema1:headline "@jc_stubbs @blakehounshell @Blickch @ASLuhn @ChristopherJM Why is everyone so jealous?" ;
+    prov:generatedAtTime "2015-03-13T10:33:20+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576330432750440448> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/93854c8447> ;
+    sioc:has_creator <http://example.org/user/2455300670> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @L0gg0l At least its not Merkel so we would have a problem." ;
+    prov:generatedAtTime "2015-03-13T10:34:17+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576330947588558849> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/a92e8842f0> ;
+    sioc:has_creator <http://example.org/user/2753300463> ;
+    schema1:headline """@Victoriaokane @BlissTabitha
+
+CAN PUTIN'S ABSENCE INDICATE A PALACE COUP IN MOSCOW? - Forbes
+
+ http://t.co/CNjygFMDRM #SmartNews #DAVICTABN""" ;
+    prov:generatedAtTime "2015-03-13T10:36:20+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576336711376056320> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/34dd390241> ;
+    sioc:has_creator <http://example.org/user/2268785065> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @FerroTV @L0gg0l Welcome Sir!" ;
+    prov:generatedAtTime "2015-03-13T10:59:14+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576337741455093760> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/65caaf4389> ;
+    sioc:has_creator <http://example.org/user/1368100356> ;
+    sioc:reply_of <http://example.org/post/576319319681937408> ;
+    schema1:headline "@AttardMon  &gt;&gt; @rConflictNews @L0gg0l" ;
+    prov:generatedAtTime "2015-03-13T11:03:20+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576338963390148608> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/09d33c9420> ;
+    sioc:has_creator <http://example.org/user/72588786> ;
+    sioc:reply_of <http://example.org/post/576338374925164544> ;
+    schema1:headline "“@sanwaldinjo: And you thought it was Putin's back? Alina Kabaeva allegedly gave birth to a child in Switzerland. http://t.co/JpuRAVJ8lZ”" ;
+    prov:generatedAtTime "2015-03-13T11:08:11+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576339955598942208> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/122a126ee3> ;
+    sioc:has_creator <http://example.org/user/567575673> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "Both have proved their flexibility! @russian_market @ChristophHeer52 @L0gg0l" ;
+    prov:generatedAtTime "2015-03-13T11:12:07+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576342185941020674> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/6c3539d6af> ;
+    sioc:has_creator <http://example.org/user/368224044> ;
+    sioc:reply_of <http://example.org/post/576327863802138624> ;
+    schema1:headline "@jc_stubbs @Blickch She doesn't trust doctors in Russia-The-Super-Power, does she?" ;
+    prov:generatedAtTime "2015-03-13T11:20:59+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576342675290497024> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/005f2d2064> ;
+    sioc:has_creator <http://example.org/user/2972998455> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @L0gg0l Makes no sense though. Why go to Switzerland for that? Too much hassle." ;
+    prov:generatedAtTime "2015-03-13T11:22:56+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576348301940932608> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/875ec9c0db> ;
+    sioc:has_creator <http://example.org/user/35227730> ;
+    sioc:reply_of <http://example.org/post/576323086888361984> ;
+    schema1:headline "@BBCDanielS It is difficult not to think of \"Rosemary's Baby\" in this instance." ;
+    prov:generatedAtTime "2015-03-13T11:45:17+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576348470891683842> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/913159dd8f> ;
+    sioc:has_creator <http://example.org/user/2301712239> ;
+    schema1:headline """@myroslavapetsa @niktwick 
+
+http://t.co/haOdESoc9n 
+
+http://t.co/vrrHyLhWUq
+
+Most likely they are now in Northern Italy with Betlusconi.""" ;
+    prov:generatedAtTime "2015-03-13T11:45:58+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576352246394421249> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/c25acfc4b5> ;
+    sioc:has_creator <http://example.org/user/2939483921> ;
+    sioc:reply_of <http://example.org/post/576321856166346752> ;
+    schema1:headline "@Jogi7819 @russian_market @L0gg0l Эй, рагуль, скачешь небось?" ;
+    prov:generatedAtTime "2015-03-13T12:00:58+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576357631117434881> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/63ea5b0665> ;
+    sioc:has_creator <http://example.org/user/49013960> ;
+    sioc:reply_of <http://example.org/post/576344611519614976> ;
+    schema1:headline "@niktwick always knew he was a dickhead" ;
+    prov:generatedAtTime "2015-03-13T12:22:22+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576360212816375808> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/02043a67ab> ;
+    sioc:has_creator <http://example.org/user/2148809806> ;
+    sioc:reply_of <http://example.org/post/576325381990535169> ;
+    schema1:headline "@Daily_Express  sounds like the old soviet union lol" ;
+    prov:generatedAtTime "2015-03-13T12:32:37+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576364935363559424> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/b2dab9a5d1> ;
+    sioc:has_creator <http://example.org/user/289035065> ;
+    sioc:reply_of <http://example.org/post/576319105965359105> ;
+    schema1:headline "@L0gg0l @JF991 @russian_market BS" ;
+    prov:generatedAtTime "2015-03-13T12:51:23+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576378344377298944> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/bad28d37fa> ;
+    sioc:has_creator <http://example.org/user/432248565> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @Blickch @L0gg0l ну дай Бог им побольше детей! Русским размножаться надо - вон у нас сколько необжитой земли)))" ;
+    prov:generatedAtTime "2015-03-13T13:44:40+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576410626253275136> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/d63fda06c5> ;
+    sioc:has_creator <http://example.org/user/2553154040> ;
+    sioc:reply_of <http://example.org/post/576344611519614976> ;
+    schema1:headline "@niktwick Apart from pregnancy #Kabayeva will be under big pressure in #Switzerland for having a child from #PutinMurderer" ;
+    prov:generatedAtTime "2015-03-13T15:52:57+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576432008987062272> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/79bcab61ec> ;
+    sioc:has_creator <http://example.org/user/30438042> ;
+    sioc:reply_of <http://example.org/post/576431564084658176> ;
+    schema1:headline "@ystriya  Looks fake... @christogrozev @AnnetteLatour" ;
+    prov:generatedAtTime "2015-03-13T17:17:55+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576432511649202176> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/0d9a51bb55> ;
+    sioc:has_creator <http://example.org/user/248419931> ;
+    sioc:reply_of <http://example.org/post/576431564084658176> ;
+    schema1:headline "So the baby girl has been upgraded into a son :)) @ystriya @christogrozev @AnnetteLatour" ;
+    prov:generatedAtTime "2015-03-13T17:19:55+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576435146632605696> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/4259f3e263> ;
+    sioc:has_creator <http://example.org/user/275023883> ;
+    sioc:reply_of <http://example.org/post/576323086888361984> ;
+    schema1:headline """@BBCDanielS 
+What makes us think the baby story may be true? - The Kremlin denied it!
+
+@RussiaDenies @DarthPutinKGB http://t.co/d3ULIqK5PK""" ;
+    prov:generatedAtTime "2015-03-13T17:30:23+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576439877841121280> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/8e597c66f5> ;
+    sioc:has_creator <http://example.org/user/1854772404> ;
+    sioc:reply_of <http://example.org/post/576326555246415872> ;
+    schema1:headline "@ASLuhn @StrebelLuca haven't see him either ;)" ;
+    prov:generatedAtTime "2015-03-13T17:49:11+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576441584784252929> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/34458e0882> ;
+    sioc:has_creator <http://example.org/user/2557287270> ;
+    sioc:reply_of <http://example.org/post/576181101577703424> ;
+    schema1:headline "@AmDefNews Fingers crossed." ;
+    prov:generatedAtTime "2015-03-13T17:55:58+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576549395287695360> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/e5931497d0> ;
+    sioc:has_creator <http://example.org/user/541279160> ;
+    sioc:reply_of <http://example.org/post/576338406088687616> ;
+    schema1:headline "@ArutzSheva_En @SarahPalinLinks One can only hope." ;
+    prov:generatedAtTime "2015-03-14T01:04:22+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576851044715642881> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/f19cbff162> ;
+    sioc:has_creator <http://example.org/user/2528512406> ;
+    sioc:reply_of <http://example.org/post/576323086888361984> ;
+    schema1:headline """.@BBCDanielS Tohle vypadá jako původní zdroj řečí o Putinovi/Kabajevové/švýcarské
+klinice http://t.co/JNmJhFPBpS""" ;
+    prov:generatedAtTime "2015-03-14T21:03:01+00:00"^^xsd:dateTime .
+
+<http://example.org/post/577107888868569088> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/b37e7f8af2> ;
+    sioc:has_creator <http://example.org/user/2992644183> ;
+    sioc:reply_of <http://example.org/post/576341809812623360> ;
+    schema1:headline "@Blickch @miljanarad @russian_market šaulić i cuca" ;
+    prov:generatedAtTime "2015-03-15T14:03:37+00:00"^^xsd:dateTime .
+
+<http://example.org/user/1183898623> a sioc:UserAccount ;
+    schema1:name "1183898623" .
+
+<http://example.org/user/122650202> a sioc:UserAccount ;
+    schema1:name "122650202" .
+
+<http://example.org/user/131318819> a sioc:UserAccount ;
+    schema1:name "131318819" .
+
+<http://example.org/user/1368100356> a sioc:UserAccount ;
+    schema1:name "1368100356" .
+
+<http://example.org/user/137777900> a sioc:UserAccount ;
+    schema1:name "137777900" .
+
+<http://example.org/user/138681055> a sioc:UserAccount ;
+    schema1:name "138681055" .
+
+<http://example.org/user/141502712> a sioc:UserAccount ;
+    schema1:name "141502712" .
+
+<http://example.org/user/1429244420> a sioc:UserAccount ;
+    schema1:name "1429244420" .
+
+<http://example.org/user/144611647> a sioc:UserAccount ;
+    schema1:name "144611647" .
+
+<http://example.org/user/150650920> a sioc:UserAccount ;
+    schema1:name "150650920" .
+
+<http://example.org/user/166530562> a sioc:UserAccount ;
+    schema1:name "166530562" .
+
+<http://example.org/user/1696479240> a sioc:UserAccount ;
+    schema1:name "1696479240" .
+
+<http://example.org/user/17825986> a sioc:UserAccount ;
+    schema1:name "17825986" .
+
+<http://example.org/user/17895820> a sioc:UserAccount ;
+    schema1:name "17895820" .
+
+<http://example.org/user/1854772404> a sioc:UserAccount ;
+    schema1:name "1854772404" .
+
+<http://example.org/user/1925331925> a sioc:UserAccount ;
+    schema1:name "1925331925" .
+
+<http://example.org/user/19432996> a sioc:UserAccount ;
+    schema1:name "19432996" .
+
+<http://example.org/user/1946971338> a sioc:UserAccount ;
+    schema1:name "1946971338" .
+
+<http://example.org/user/20754570> a sioc:UserAccount ;
+    schema1:name "20754570" .
+
+<http://example.org/user/2148809806> a sioc:UserAccount ;
+    schema1:name "2148809806" .
+
+<http://example.org/user/2268785065> a sioc:UserAccount ;
+    schema1:name "2268785065" .
+
+<http://example.org/user/22781017> a sioc:UserAccount ;
+    schema1:name "22781017" .
+
+<http://example.org/user/228795408> a sioc:UserAccount ;
+    schema1:name "228795408" .
+
+<http://example.org/user/229022520> a sioc:UserAccount ;
+    schema1:name "229022520" .
+
+<http://example.org/user/2358125977> a sioc:UserAccount ;
+    schema1:name "2358125977" .
+
+<http://example.org/user/2367754554> a sioc:UserAccount ;
+    schema1:name "2367754554" .
+
+<http://example.org/user/2371261604> a sioc:UserAccount ;
+    schema1:name "2371261604" .
+
+<http://example.org/user/2396755825> a sioc:UserAccount ;
+    schema1:name "2396755825" .
+
+<http://example.org/user/2406844921> a sioc:UserAccount ;
+    schema1:name "2406844921" .
+
+<http://example.org/user/2420752340> a sioc:UserAccount ;
+    schema1:name "2420752340" .
+
+<http://example.org/user/243318995> a sioc:UserAccount ;
+    schema1:name "243318995" .
+
+<http://example.org/user/2455300670> a sioc:UserAccount ;
+    schema1:name "2455300670" .
+
+<http://example.org/user/246747731> a sioc:UserAccount ;
+    schema1:name "246747731" .
+
+<http://example.org/user/248419931> a sioc:UserAccount ;
+    schema1:name "248419931" .
+
+<http://example.org/user/2528512406> a sioc:UserAccount ;
+    schema1:name "2528512406" .
+
+<http://example.org/user/2553154040> a sioc:UserAccount ;
+    schema1:name "2553154040" .
+
+<http://example.org/user/2557287270> a sioc:UserAccount ;
+    schema1:name "2557287270" .
+
+<http://example.org/user/2566535282> a sioc:UserAccount ;
+    schema1:name "2566535282" .
+
+<http://example.org/user/259975018> a sioc:UserAccount ;
+    schema1:name "259975018" .
+
+<http://example.org/user/275023883> a sioc:UserAccount ;
+    schema1:name "275023883" .
+
+<http://example.org/user/2753300463> a sioc:UserAccount ;
+    schema1:name "2753300463" .
+
+<http://example.org/user/2756163184> a sioc:UserAccount ;
+    schema1:name "2756163184" .
+
+<http://example.org/user/2835610800> a sioc:UserAccount ;
+    schema1:name "2835610800" .
+
+<http://example.org/user/2875761863> a sioc:UserAccount ;
+    schema1:name "2875761863" .
+
+<http://example.org/user/289035065> a sioc:UserAccount ;
+    schema1:name "289035065" .
+
+<http://example.org/user/2939483921> a sioc:UserAccount ;
+    schema1:name "2939483921" .
+
+<http://example.org/user/2972998455> a sioc:UserAccount ;
+    schema1:name "2972998455" .
+
+<http://example.org/user/2992644183> a sioc:UserAccount ;
+    schema1:name "2992644183" .
+
+<http://example.org/user/2992686426> a sioc:UserAccount ;
+    schema1:name "2992686426" .
+
+<http://example.org/user/299328210> a sioc:UserAccount ;
+    schema1:name "299328210" .
+
+<http://example.org/user/3040444749> a sioc:UserAccount ;
+    schema1:name "3040444749" .
+
+<http://example.org/user/30438042> a sioc:UserAccount ;
+    schema1:name "30438042" .
+
+<http://example.org/user/308130306> a sioc:UserAccount ;
+    schema1:name "308130306" .
+
+<http://example.org/user/331658004> a sioc:UserAccount ;
+    schema1:name "331658004" .
+
+<http://example.org/user/340577078> a sioc:UserAccount ;
+    schema1:name "340577078" .
+
+<http://example.org/user/35227730> a sioc:UserAccount ;
+    schema1:name "35227730" .
+
+<http://example.org/user/368224044> a sioc:UserAccount ;
+    schema1:name "368224044" .
+
+<http://example.org/user/375178685> a sioc:UserAccount ;
+    schema1:name "375178685" .
+
+<http://example.org/user/376785468> a sioc:UserAccount ;
+    schema1:name "376785468" .
+
+<http://example.org/user/38539421> a sioc:UserAccount ;
+    schema1:name "38539421" .
+
+<http://example.org/user/432248565> a sioc:UserAccount ;
+    schema1:name "432248565" .
+
+<http://example.org/user/4880191> a sioc:UserAccount ;
+    schema1:name "4880191" .
+
+<http://example.org/user/49013960> a sioc:UserAccount ;
+    schema1:name "49013960" .
+
+<http://example.org/user/492068053> a sioc:UserAccount ;
+    schema1:name "492068053" .
+
+<http://example.org/user/541279160> a sioc:UserAccount ;
+    schema1:name "541279160" .
+
+<http://example.org/user/55268034> a sioc:UserAccount ;
+    schema1:name "55268034" .
+
+<http://example.org/user/567575673> a sioc:UserAccount ;
+    schema1:name "567575673" .
+
+<http://example.org/user/573316665> a sioc:UserAccount ;
+    schema1:name "573316665" .
+
+<http://example.org/user/577226041> a sioc:UserAccount ;
+    schema1:name "577226041" .
+
+<http://example.org/user/65616414> a sioc:UserAccount ;
+    schema1:name "65616414" .
+
+<http://example.org/user/718379855> a sioc:UserAccount ;
+    schema1:name "718379855" .
+
+<http://example.org/user/72588786> a sioc:UserAccount ;
+    schema1:name "72588786" .
+
+<http://example.org/user/775378315> a sioc:UserAccount ;
+    schema1:name "775378315" .
+
+<http://example.org/user/778976910> a sioc:UserAccount ;
+    schema1:name "778976910" .
+
+<http://example.org/user/833057665> a sioc:UserAccount ;
+    schema1:name "833057665" .
+
+<http://example.org/user/921252660> a sioc:UserAccount ;
+    schema1:name "921252660" .
+
+<http://example.org/user/974710136> a sioc:UserAccount ;
+    schema1:name "974710136" .
+
+<http://example.org/post/576191681827057664> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/47810e2ab0> ;
+    sioc:has_creator <http://example.org/user/44504025> ;
+    schema1:headline "Is Putin facing palace coup? http://t.co/FOGZjRrDoZ" ;
+    prov:generatedAtTime "2015-03-13T01:22:56+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576204915694964737> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/ae4bc68dfb> ;
+    sioc:has_creator <http://example.org/user/44504025> ;
+    schema1:headline "Is Putin facing palace coup? http://t.co/FOGZjRJegx" ;
+    prov:generatedAtTime "2015-03-13T02:15:31+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576218291909214209> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/a5f8c4ee55>,
+        <http://example.org/claim/bb554c329f> ;
+    sioc:has_creator <http://example.org/user/2358125977> ;
+    sioc:reply_of <http://example.org/post/576191681827057664> ;
+    schema1:headline "@jsph1959 Putin isn't dead.. he was just hiding up someone's asshole https://t.co/F8sigQMswi #putinbuttplug http://t.co/EeUjNNybDe" ;
+    prov:generatedAtTime "2015-03-13T03:08:41+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576244606553219072> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/d6dcc1a39e>,
+        <http://example.org/claim/e56a90767e> ;
+    sioc:has_creator <http://example.org/user/259975018> ;
+    sioc:reply_of <http://example.org/post/576238790936662017> ;
+    schema1:headline "@EINRussiaNews @mintaka51 that would be US neocons and Obama's wet dream." ;
+    prov:generatedAtTime "2015-03-13T04:53:14+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576248645365846016> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/73ea6981e1>,
+        <http://example.org/claim/b87ff85509> ;
+    sioc:has_creator <http://example.org/user/778976910> ;
+    schema1:headline "Can Putin's Absence Indicate A Palace Coup In Moscow http://t.co/GmEq0iV1W8" ;
+    prov:generatedAtTime "2015-03-13T05:09:17+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576276113288224768> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/0e9676b089>,
+        <http://example.org/claim/95404725fd> ;
+    sioc:has_creator <http://example.org/user/721722306> ;
+    sioc:reply_of <http://example.org/post/576225987119198208> ;
+    schema1:headline "@kssg @Forbes About Putin's where abouts? He has gone for a fishing holiday in Crimea" ;
+    prov:generatedAtTime "2015-03-13T06:58:26+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576281472778182656> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/a184645ac7>,
+        <http://example.org/claim/a425217c7b> ;
+    sioc:has_creator <http://example.org/user/1333122608> ;
+    sioc:reply_of <http://example.org/post/576279839205818368> ;
+    schema1:headline "So if #RamzanKadyrov had #BorisNemtsov assassinated was it at the direction of Putin or is/was Putin at the direction of FSB/Kadyrov? Hmm" ;
+    prov:generatedAtTime "2015-03-13T07:19:44+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576320730553405440> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/3dbdf181b0>,
+        <http://example.org/claim/5c15534423> ;
+    sioc:has_creator <http://example.org/user/492068053> ;
+    sioc:reply_of <http://example.org/post/576225987119198208> ;
+    schema1:headline "@kssg @Forbes Just curious, Is the job of the media to report on an ongoing event or to just speculate on things and spread hysteria?" ;
+    prov:generatedAtTime "2015-03-13T09:55:44+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576321856166346752> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/1c49e43c94> ;
+    sioc:has_creator <http://example.org/user/2406844921> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @L0gg0l You are very engaged in the massive spread of rumors. Keep calm and wait what happend to the Huylo." ;
+    prov:generatedAtTime "2015-03-13T10:00:12+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576322113876992000> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/164698f8c1>,
+        <http://example.org/claim/2e0db5cb62> ;
+    sioc:has_creator <http://example.org/user/228795408> ;
+    sioc:reply_of <http://example.org/post/576321916593659904> ;
+    schema1:headline "@christogrozev Might explain absence from public life last few days. @AnnetteLatour" ;
+    prov:generatedAtTime "2015-03-13T10:01:14+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576323427503591426> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/01a0e64738>,
+        <http://example.org/claim/409bae7c65> ;
+    sioc:has_creator <http://example.org/user/131318819> ;
+    sioc:reply_of <http://example.org/post/576321916593659904> ;
+    schema1:headline "@christogrozev @EliotHiggins @AnnetteLatour How will Putin react after a sleepless night filled with diapers and crying?" ;
+    prov:generatedAtTime "2015-03-13T10:06:27+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576324105445777408> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/7a27076227>,
+        <http://example.org/claim/ab949f4866> ;
+    sioc:has_creator <http://example.org/user/1183898623> ;
+    sioc:reply_of <http://example.org/post/576321916593659904> ;
+    schema1:headline "@christogrozev Why does the account @AnnetteLatour delete its tweets? Not noticed it for a while now, Putin disappears &amp; it pops up." ;
+    prov:generatedAtTime "2015-03-13T10:09:08+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576327082436927488> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/89e81188d5> ;
+    sioc:has_creator <http://example.org/user/299328210> ;
+    sioc:reply_of <http://example.org/post/576326555246415872> ;
+    schema1:headline "@ASLuhn @BBCDanielS Very skeptical indeed. Pretty thin evidence. If I see him, I will tell you! ;)" ;
+    prov:generatedAtTime "2015-03-13T10:20:58+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576327374628917248> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/34467da752>,
+        <http://example.org/claim/a40bafaee0> ;
+    sioc:has_creator <http://example.org/user/4880191> ;
+    sioc:reply_of <http://example.org/post/576323086888361984> ;
+    schema1:headline "@BBCDanielS @EllenBarryNYT Well, Blick is a tabloid, so I wouldn't necessarily believe everything they say :-)" ;
+    prov:generatedAtTime "2015-03-13T10:22:08+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576327507093360640> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/5150ed269b>,
+        <http://example.org/claim/84ff87d6f0> ;
+    sioc:has_creator <http://example.org/user/150650920> ;
+    schema1:headline "According to this article http://t.co/pWZaRxHypA #Putin might be AWOL due to his gf giving birth in Ticino." ;
+    prov:generatedAtTime "2015-03-13T10:22:39+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576327925869506560> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/6af901d47f>,
+        <http://example.org/claim/926f6a816f> ;
+    sioc:has_creator <http://example.org/user/138681055> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline """@russian_market have you read this? http://t.co/p5s1UG5B9G 
+Is Andrei Illarionov a reliable source in your opinion?""" ;
+    prov:generatedAtTime "2015-03-13T10:24:19+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576338374925164544> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/4be414827f> ;
+    sioc:has_creator <http://example.org/user/122650202> ;
+    schema1:headline "And you thought it was Putin's back? Alina Kabaeva allegedly gave birth to a child in Switzerland. http://t.co/HlE4XxoI4S" ;
+    prov:generatedAtTime "2015-03-13T11:05:51+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576341311411847168> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/2977ebb1a6>,
+        <http://example.org/claim/34bd232541> ;
+    sioc:has_creator <http://example.org/user/2396755825> ;
+    sioc:reply_of <http://example.org/post/576321889276207105> ;
+    schema1:headline "@anke_sf @KristinaSyk @russian_market This is by far my favorite theory, regardless of its probability :)!" ;
+    prov:generatedAtTime "2015-03-13T11:17:31+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576344015458570240> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/4ee7019c3c>,
+        <http://example.org/claim/a0c0a8964c> ;
+    sioc:has_creator <http://example.org/user/38539421> ;
+    schema1:headline "#PutinDead speculation really like old times http://t.co/f8Zv0jwPCj when West speculated on health of Soviet leaders http://t.co/HNb5k34WKi" ;
+    prov:generatedAtTime "2015-03-13T11:28:15+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576345238857449472> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/439cdf6ee8>,
+        <http://example.org/claim/b65a20392c> ;
+    sioc:has_creator <http://example.org/user/340577078> ;
+    sioc:reply_of <http://example.org/post/576344611519614976> ;
+    schema1:headline """“@niktwick: Kabayeva rumoured to have delivered a baby in Switzerland 
+http://t.co/zuDAqNc3oT” Putin på pappaperm?""" ;
+    prov:generatedAtTime "2015-03-13T11:33:07+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576347407836909569> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/c29e08bc8d> ;
+    sioc:has_creator <http://example.org/user/19759808> ;
+    sioc:reply_of <http://example.org/post/576344611519614976> ;
+    schema1:headline """I like: "Neu-Papi Putin"
+http://t.co/Qqx5AxYBXb""" ;
+    prov:generatedAtTime "2015-03-13T11:41:44+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576355637229154304> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/449806b5d1>,
+        <http://example.org/claim/c036e9405e> ;
+    sioc:has_creator <http://example.org/user/19759808> ;
+    sioc:reply_of <http://example.org/post/576347407836909569> ;
+    schema1:headline """In terms of news, this is the first Kabayeva baby that is born outside the NY Post's @PageSix 
+This was Nr 2: http://t.co/bsXB1xcfF9""" ;
+    prov:generatedAtTime "2015-03-13T12:14:26+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576370222573182976> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/0de5853f6f>,
+        <http://example.org/claim/7d3b43307c> ;
+    sioc:has_creator <http://example.org/user/1696479240> ;
+    sioc:reply_of <http://example.org/post/576356967373004800> ;
+    schema1:headline "@kampsabine @christogrozev Is his babygirl black and Putin is still drunk since he saw her first time ?" ;
+    prov:generatedAtTime "2015-03-13T13:12:24+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576434048882606080> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/4caeffa6dd>,
+        <http://example.org/claim/b813dce67a> ;
+    sioc:has_creator <http://example.org/user/2459757282> ;
+    schema1:headline """@AnnetteLatour @christogrozev 
+Heh. I've just arrived, &amp; only staying a few minutes :)""" ;
+    prov:generatedAtTime "2015-03-13T17:26:01+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576531814904385536> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/69a6adbe17>,
+        <http://example.org/claim/796f3ba1af> ;
+    sioc:has_creator <http://example.org/user/577226041> ;
+    sioc:reply_of <http://example.org/post/576531327694057472> ;
+    schema1:headline "@kezhmanprvi @Blickch @russian_market maliov ima vkus...." ;
+    prov:generatedAtTime "2015-03-13T23:54:30+00:00"^^xsd:dateTime .
+
+<http://example.org/user/2301712239> a sioc:UserAccount ;
+    schema1:name "2301712239" .
+
+<http://example.org/user/2459757282> a sioc:UserAccount ;
+    schema1:name "2459757282" .
+
+<http://example.org/user/2676385764> a sioc:UserAccount ;
+    schema1:name "2676385764" .
+
+<http://example.org/user/44504025> a sioc:UserAccount ;
+    schema1:name "44504025" .
+
+<http://example.org/user/47694125> a sioc:UserAccount ;
+    schema1:name "47694125" .
+
+<http://example.org/user/721722306> a sioc:UserAccount ;
+    schema1:name "721722306" .
+
+<http://example.org/user/90275200> a sioc:UserAccount ;
+    schema1:name "90275200" .
+
+<http://example.org/post/576175612336992257> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/0853ea69e3>,
+        <http://example.org/claim/70fa5c58a0>,
+        <http://example.org/claim/8970564be6> ;
+    sioc:has_creator <http://example.org/user/1429244420> ;
+    schema1:headline "#Putin/s \"death\" or another #maskirovka? Military helo's flying over #Moscow &gt;  http://t.co/Spj2VTdlAt #Reddit #Russia #Putindead #NATO" ;
+    prov:generatedAtTime "2015-03-13T00:19:05+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576193576993869825> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/139b352443>,
+        <http://example.org/claim/ba18c22b6f>,
+        <http://example.org/claim/de602fb5ec> ;
+    sioc:has_creator <http://example.org/user/2992686426> ;
+    sioc:reply_of <http://example.org/post/576192621351145472> ;
+    schema1:headline "@MikeDiazFL @LToddWood   We can only hope at this time. No proof as of yet." ;
+    prov:generatedAtTime "2015-03-13T01:30:28+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576231309254721536> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/57142d5aee>,
+        <http://example.org/claim/78ca645ac8> ;
+    sioc:has_creator <http://example.org/user/573316665> ;
+    schema1:headline "Can Putin's Absence Indicate A Palace Coup In Moscow? #europe #russia http://t.co/ygSgrQBvXv via @forbes" ;
+    prov:generatedAtTime "2015-03-13T04:00:24+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576238790936662017> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/7152fa234d>,
+        <http://example.org/claim/afc1ee66eb> ;
+    sioc:has_creator <http://example.org/user/166530562> ;
+    schema1:headline "Can #Putin's Absence Indicate A Palace Coup In Moscow? http://t.co/3LQqW2fkNB #Russia" ;
+    prov:generatedAtTime "2015-03-13T04:30:08+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576272369091756032> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/69c6ba4340>,
+        <http://example.org/claim/88ef539476>,
+        <http://example.org/claim/c74801471b> ;
+    sioc:has_creator <http://example.org/user/721722306> ;
+    sioc:reply_of <http://example.org/post/576225987119198208> ;
+    schema1:headline "@kssg @Forbes If Putin remains out of sight for another week we conclude its  in a palace coup or possibly been screwed by EU sanctions" ;
+    prov:generatedAtTime "2015-03-13T06:43:34+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576276947648405505> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/82c7dd5b2c>,
+        <http://example.org/claim/a84bbe4087> ;
+    sioc:has_creator <http://example.org/user/1333122608> ;
+    schema1:headline "Coup in #Russia? Good article by @Forbes. http://t.co/aaNCpb0blW #RamzanKadyrov #Putin #putindead http://t.co/OfivdTlTbO" ;
+    prov:generatedAtTime "2015-03-13T07:01:45+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576321273594294272> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/7fb8dcf19f>,
+        <http://example.org/claim/a6d188723a>,
+        <http://example.org/claim/a7f4e15826> ;
+    sioc:has_creator <http://example.org/user/1946971338> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @L0gg0l Mr Putin building the nation is great. Good country man and best president" ;
+    prov:generatedAtTime "2015-03-13T09:57:53+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576322836672995328> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/136976961b>,
+        <http://example.org/claim/e8bfd525ab>,
+        <http://example.org/claim/f1428a7c4a> ;
+    sioc:has_creator <http://example.org/user/246747731> ;
+    sioc:reply_of <http://example.org/post/576320540983582720> ;
+    schema1:headline "@JurgisLiepnieks Carevič?" ;
+    prov:generatedAtTime "2015-03-13T10:04:06+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576324010025349120> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/150a30d775>,
+        <http://example.org/claim/8115a5fe60> ;
+    sioc:has_creator <http://example.org/user/974710136> ;
+    sioc:reply_of <http://example.org/post/576321889276207105> ;
+    schema1:headline "@anke_sf @KristinaSyk Hehe ja faktiskt varför inte, tokigare saker har ju hänt." ;
+    prov:generatedAtTime "2015-03-13T10:08:46+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576325381990535169> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/2c70b34e0c>,
+        <http://example.org/claim/4d7c9b7c5b> ;
+    sioc:has_creator <http://example.org/user/17895820> ;
+    schema1:headline "Russian President Vladimir Putin to be 'ousted in coup' as rumours swirl over ill-health http://t.co/8UrQdH7v5N http://t.co/6NpJ6h4EiB" ;
+    prov:generatedAtTime "2015-03-13T10:14:13+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576327863802138624> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/a27c401cd0> ;
+    sioc:has_creator <http://example.org/user/833057665> ;
+    schema1:headline "Maybe Putin has just been on paternity leave? - @Blickch says Kabaeva has checked into a Swiss clinic to give birth http://t.co/gGDSkFJxdg" ;
+    prov:generatedAtTime "2015-03-13T10:24:05+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576336207203856385> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/21b80de6c0>,
+        <http://example.org/claim/5357409aac>,
+        <http://example.org/claim/c5344679cd> ;
+    sioc:has_creator <http://example.org/user/2367754554> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @L0gg0l Given the state of Russian medical facilities, makes sense she would run to Switzerland. Not very patriotic, though." ;
+    prov:generatedAtTime "2015-03-13T10:57:14+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576338406088687616> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/8d6606ac5c>,
+        <http://example.org/claim/faa2bfaf34> ;
+    sioc:has_creator <http://example.org/user/55268034> ;
+    schema1:headline "Has Putin Fallen Ill, or Fallen to a Coup? http://t.co/eNRAQ2a7hd" ;
+    prov:generatedAtTime "2015-03-13T11:05:58+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576341114610929664> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/2189c055ef>,
+        <http://example.org/claim/decc52f860>,
+        <http://example.org/claim/ee7c594c6a> ;
+    sioc:has_creator <http://example.org/user/2875761863> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @ChristophHeer52 @L0gg0l My money still #SecurityConcerns #Nemstov could have shaken security #DrEd" ;
+    prov:generatedAtTime "2015-03-13T11:16:44+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576356967373004800> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/023223401e>,
+        <http://example.org/claim/72db970a14> ;
+    sioc:has_creator <http://example.org/user/2420752340> ;
+    sioc:reply_of <http://example.org/post/576321916593659904> ;
+    schema1:headline "@christogrozev Swiss Clinic Sant'Anna of Sorengo confirms Alina Kabayeva gave a birth to a babygirl weeks ago  http://t.co/WAmB3EG5GF" ;
+    prov:generatedAtTime "2015-03-13T12:19:43+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576371148511809537> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/0a197ad34d>,
+        <http://example.org/claim/d6727fea92>,
+        <http://example.org/claim/d7d7a4639c> ;
+    sioc:has_creator <http://example.org/user/1333122608> ;
+    sioc:reply_of <http://example.org/post/576319105965359105> ;
+    schema1:headline "Rumors in Switzerland: Putin absence due to his girlfriend Alina Kabaeva giving birth in Ticino https://t.co/bnmBbcNZce -@L0gg0l" ;
+    prov:generatedAtTime "2015-03-13T13:16:04+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576431564084658176> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/c2b552f4b1> ;
+    sioc:has_creator <http://example.org/user/2459757282> ;
+    sioc:reply_of <http://example.org/post/576321916593659904> ;
+    schema1:headline """@christogrozev @AnnetteLatour 
+=&gt; https://t.co/WIkXl44Fok""" ;
+    prov:generatedAtTime "2015-03-13T17:16:09+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576432032957341696> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/1a31c529f2>,
+        <http://example.org/claim/9b393c7f47>,
+        <http://example.org/claim/a4515c57c2> ;
+    sioc:has_creator <http://example.org/user/718379855> ;
+    sioc:reply_of <http://example.org/post/576321916593659904> ;
+    schema1:headline "@christogrozev @ystriya @AnnetteLatour would explain it better if Russia gov hadn't spent lot of ink reassuring Putin is only a little ill" ;
+    prov:generatedAtTime "2015-03-13T17:18:00+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576531327694057472> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/08a0c3675d>,
+        <http://example.org/claim/6307b73010> ;
+    sioc:has_creator <http://example.org/user/3040444749> ;
+    sioc:reply_of <http://example.org/post/576341809812623360> ;
+    schema1:headline "@Blickch @igorperkovski @russian_market  e ubava e brat,nema shto..." ;
+    prov:generatedAtTime "2015-03-13T23:52:34+00:00"^^xsd:dateTime .
+
+<http://example.org/post/577116829459578880> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/13c2c89755>,
+        <http://example.org/claim/62666ca470>,
+        <http://example.org/claim/b2a3fb756a> ;
+    sioc:has_creator <http://example.org/user/308130306> ;
+    sioc:reply_of <http://example.org/post/576326555246415872> ;
+    schema1:headline "@ASLuhn @StrebelLuca @BBCDanielS U r terminally skeptical, not 2 say cynical Alec. Not as slime-ridden as colleagues Shitford/Wanker however" ;
+    prov:generatedAtTime "2015-03-15T14:39:09+00:00"^^xsd:dateTime .
+
+<http://example.org/post/577894532194443264> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/1b684fd13d>,
+        <http://example.org/claim/b238f02a5f>,
+        <http://example.org/claim/c1c2a67434> ;
+    sioc:has_creator <http://example.org/user/775378315> ;
+    sioc:reply_of <http://example.org/post/576319832800555008> ;
+    schema1:headline "@russian_market @tiedoniekku @L0gg0l март....." ;
+    prov:generatedAtTime "2015-03-17T18:09:27+00:00"^^xsd:dateTime .
+
+<http://example.org/user/19759808> a sioc:UserAccount ;
+    schema1:name "19759808" .
+
+<http://example.org/post/576181101577703424> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/045f9b94d9>,
+        <http://example.org/claim/6cf4c01690>,
+        <http://example.org/claim/7bc7b83151> ;
+    sioc:has_creator <http://example.org/user/1333122608> ;
+    schema1:headline "Don't know if #putindead is true but trying to start WW3 surely puts a price on one's head." ;
+    prov:generatedAtTime "2015-03-13T00:40:54+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576192621351145472> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/624299c69d>,
+        <http://example.org/claim/95c371b6d9>,
+        <http://example.org/claim/d35a72ed7a> ;
+    sioc:has_creator <http://example.org/user/1925331925> ;
+    schema1:headline "\"Putin umer\" or \"Putin has died,\" is now trending on the Russian Internet. @LToddWood #putindead" ;
+    prov:generatedAtTime "2015-03-13T01:26:40+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576278902185705472> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/3731aecae4>,
+        <http://example.org/claim/9a0aa3334a>,
+        <http://example.org/claim/d3b6007e05> ;
+    sioc:has_creator <http://example.org/user/1333122608> ;
+    sioc:reply_of <http://example.org/post/576276947648405505> ;
+    schema1:headline "#RamzanKadyrov- A Sunni Muslim Russian/Chechen Ultranationalist w/ ties to the \"United Russia\" party(Putinism) &amp; #Russia's FSB(current KGB)." ;
+    prov:generatedAtTime "2015-03-13T07:09:31+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576279839205818368> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/1f257c3d20>,
+        <http://example.org/claim/200898d9c3>,
+        <http://example.org/claim/266465e250> ;
+    sioc:has_creator <http://example.org/user/1333122608> ;
+    sioc:reply_of <http://example.org/post/576278902185705472> ;
+    schema1:headline "US Embassy #Moscow cables talk of an operation planned by \"dissidents\" in #Russia to \"overthrow Putin\". http://t.co/hCW0JuZDLk #RussiaCoup" ;
+    prov:generatedAtTime "2015-03-13T07:13:15+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576319319681937408> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/5c4585524d>,
+        <http://example.org/claim/af7d485ff7>,
+        <http://example.org/claim/c898e7109a> ;
+    sioc:has_creator <http://example.org/user/2566535282> ;
+    sioc:reply_of <http://example.org/post/576319105965359105> ;
+    schema1:headline "Rumors in Switzerland: Putin absence due to his girlfriend Alina Kabaeva giving birth in Ticino - @L0gg0l https://t.co/iV6Lzpu33A" ;
+    prov:generatedAtTime "2015-03-13T09:50:07+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576320540983582720> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/042898568d>,
+        <http://example.org/claim/6da5ee4aa4>,
+        <http://example.org/claim/f62db48155> ;
+    sioc:has_creator <http://example.org/user/141502712> ;
+    schema1:headline "Lūk tā RT @L0gg0l: Rumors in Switzerland: Putin absence due to his girlfriend Alina Kabaeva giving birth in Ticino https://t.co/TYeC8ylhxq" ;
+    prov:generatedAtTime "2015-03-13T09:54:59+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576319105965359105> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/78833bd8c3> ;
+    sioc:has_creator <http://example.org/user/65616414> ;
+    schema1:headline "Rumors in Switzerland: Putin absence due to his girlfriend Alina Kabaeva giving birth in Ticino https://t.co/lBNIFEmzrW cc @russian_market" ;
+    prov:generatedAtTime "2015-03-13T09:49:17+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576321889276207105> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/94998084aa>,
+        <http://example.org/claim/a5634bc347>,
+        <http://example.org/claim/b639f67866> ;
+    sioc:has_creator <http://example.org/user/2676385764> ;
+    schema1:headline ".@KristinaSyk the latest...via @russian_market MT Putin absence due to girlfriend giving birth http://t.co/TdOhhuy3XH http://t.co/hRqXb1r0mb" ;
+    prov:generatedAtTime "2015-03-13T10:00:20+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576326555246415872> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/2292f61af7>,
+        <http://example.org/claim/a9f96d903b> ;
+    sioc:has_creator <http://example.org/user/90275200> ;
+    schema1:headline "Is Putin in Switzerland with Kabayeva? I'm skeptical @StrebelLuca @BBCDanielS http://t.co/Hcax5bZoNo" ;
+    prov:generatedAtTime "2015-03-13T10:18:53+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576341809812623360> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/1826ee6515>,
+        <http://example.org/claim/98cf1ec789>,
+        <http://example.org/claim/b19ef5bddb> ;
+    sioc:has_creator <http://example.org/user/22781017> ;
+    schema1:headline "Rumors in Ticino/Switzerland: Putin's baby already born? cc: @russian_market http://t.co/Txbcd81G1C http://t.co/0xxnb13wdX" ;
+    prov:generatedAtTime "2015-03-13T11:19:30+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576344611519614976> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/f558a8f690> ;
+    sioc:has_creator <http://example.org/user/19759808> ;
+    schema1:headline """Well, this might explain everything: Kabayeva rumoured to have delivered a baby in Switzerland 
+http://t.co/JpjmxLF4LG GER
+#Putin""" ;
+    prov:generatedAtTime "2015-03-13T11:30:38+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576225987119198208> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/0997f89b55>,
+        <http://example.org/claim/b9291f0aae> ;
+    sioc:has_creator <http://example.org/user/19432996> ;
+    schema1:headline "#putindead #putin Can Putin's Absence Indicate A Palace Coup In Moscow? http://t.co/ImBuKEacO1 via @forbes" ;
+    prov:generatedAtTime "2015-03-13T03:39:15+00:00"^^xsd:dateTime .
+
+<http://example.org/user/1333122608> a sioc:UserAccount ;
+    schema1:name "1333122608" .
+
+<http://example.org/post/576323086888361984> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/6abac2a2e4> ;
+    sioc:has_creator <http://example.org/user/331658004> ;
+    schema1:headline "This appears to be the original source of the Putin/Kabayeva/Swiss clinic rumour http://t.co/bKfJTSGdca" ;
+    prov:generatedAtTime "2015-03-13T10:05:06+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576321916593659904> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/1fdd5894b0> ;
+    sioc:has_creator <http://example.org/user/144611647> ;
+    schema1:headline "Putin's son born today? &gt;&gt; http://t.co/RLN25tys2E via @AnnetteLatour" ;
+    prov:generatedAtTime "2015-03-13T10:00:27+00:00"^^xsd:dateTime .
+
+<http://example.org/post/576319832800555008> a sioc:Post ;
+    ex:label "rumours" ;
+    ex:mentionsClaim <http://example.org/claim/0a7fad5be3> ;
+    sioc:has_creator <http://example.org/user/243318995> ;
+    schema1:headline "Hoppla! @L0gg0l: Swiss Rumors: Putin absence due to girlfriend Alina giving birth in Ticino http://t.co/vZnGDH1Qys http://t.co/5TvXSdvd1H" ;
+    prov:generatedAtTime "2015-03-13T09:52:10+00:00"^^xsd:dateTime .
+

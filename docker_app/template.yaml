@@ -1,0 +1,414 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Rumour Verification Framework - Serverless Architecture (One Shared API Gateway)
+
+Globals:
+  Function:
+    Timeout: 300
+    MemorySize: 2048
+    Environment:
+      Variables:
+        COGNITO_REGION: !Ref AWS::Region
+        COGNITO_USERPOOL_ID: !Ref CognitoUserPoolId
+        COGNITO_APP_CLIENT_ID: !Ref CognitoAppClientId
+
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues: [dev, staging, prod]
+    Description: Deployment environment
+
+  CognitoUserPoolId:
+    Type: String
+    Default: "us-east-1_EzsbnOYed"
+    Description: Cognito User Pool ID
+
+  CognitoAppClientId:
+    Type: String
+    Default: "2qnmhh7vjc15baqiio0p3t95tn"
+    Description: Cognito App Client ID
+
+Conditions:
+  IsProduction: !Equals [!Ref Environment, prod]
+  IsDevelopment: !Equals [!Ref Environment, dev]
+
+Resources:
+  KGProcessingQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub "${AWS::StackName}-kg-processing-${Environment}"
+      VisibilityTimeout: 900
+      MessageRetentionPeriod: 1209600
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt KGProcessingDLQ.Arn
+        maxReceiveCount: 3
+
+  KGProcessingDLQ:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub "${AWS::StackName}-kg-processing-dlq-${Environment}"
+
+  # ------------------------------------------------------
+  # Managed Policy for S3 access
+  # ------------------------------------------------------
+  MadsiftAccessPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:ListBucket
+              - s3:GetObject
+              - s3:PutObject
+              - s3:DeleteObject
+            Resource:
+              - arn:aws:s3:::madsift
+              - arn:aws:s3:::madsift/*
+              - arn:aws:s3:::madsift-agent-sessions
+              - arn:aws:s3:::madsift-agent-sessions/*
+          - Effect: Allow
+            Action:
+              - secretsmanager:GetSecretValue
+            Resource: "*"
+
+  # ------------------------------------------------------
+  # ECR Repositories (for container images)
+  # ------------------------------------------------------
+  ChatAgentECR:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Sub "${AWS::StackName}-chat-agent"
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      LifecyclePolicy:
+        LifecyclePolicyText: |
+          {
+            "rules": [{
+              "rulePriority": 1,
+              "description": "Keep last 3 images",
+              "selection": {
+                "tagStatus": "any",
+                "countType": "imageCountMoreThan",
+                "countNumber": 3
+              },
+              "action": { "type": "expire" }
+            }]
+          }
+
+
+
+  AutoKgProcessorECR:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Sub "${AWS::StackName}-autokg-processor"
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      LifecyclePolicy:
+        LifecyclePolicyText: |
+          {
+            "rules": [{
+              "rulePriority": 1,
+              "description": "Keep last 3 images",
+              "selection": {
+                "tagStatus": "any",
+                "countType": "imageCountMoreThan",
+                "countNumber": 3
+              },
+              "action": { "type": "expire" }
+            }]
+          }
+
+  StreamlitECR:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Sub "${AWS::StackName}-streamlit-ui"
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      LifecyclePolicy:
+        LifecyclePolicyText: |
+          {
+            "rules": [{
+              "rulePriority": 1,
+              "description": "Keep last 5 images",
+              "selection": {
+                "tagStatus": "any",
+                "countType": "imageCountMoreThan",
+                "countNumber": 5
+              },
+              "action": { "type": "expire" }
+            }]
+          }
+  # ------------------------------------------------------
+  # Shared API Gateway
+  # ------------------------------------------------------
+  ApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref Environment
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
+
+
+  # ------------------------------------------------------
+  # DynamoDB Tables
+  # ------------------------------------------------------
+  UserManagementTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-users-${Environment}"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - { AttributeName: user_id, AttributeType: S }
+        - { AttributeName: email, AttributeType: S }
+      KeySchema:
+        - { AttributeName: user_id, KeyType: HASH }
+      GlobalSecondaryIndexes:
+        - IndexName: email-index
+          KeySchema: [{ AttributeName: email, KeyType: HASH }]
+          Projection: { ProjectionType: ALL }
+      StreamSpecification: { StreamViewType: NEW_AND_OLD_IMAGES }
+      PointInTimeRecoverySpecification: { PointInTimeRecoveryEnabled: true }
+
+  MonitoringJobsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-monitoring-jobs-${Environment}"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - { AttributeName: job_id, AttributeType: S }
+      KeySchema:
+        - { AttributeName: job_id, KeyType: HASH }
+
+
+  # ------------------------------------------------------
+  # IAM Role for EventBridge Scheduler
+  # ------------------------------------------------------
+
+  EventBridgeSchedulerRole:     # 🔹 new logical ID
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${AWS::StackName}-scheduler-role-${Environment}"
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: scheduler.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: InvokeLambdaAndLog
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                  - lambda:InvokeAsync
+                Resource:
+
+                  - !Sub "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-autokg-processor-${Environment}"
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+
+
+  # ------------------------------------------------------
+  # Lambda: ChatAgentFunction
+  # ------------------------------------------------------
+  ChatAgentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-chat-agent-${Environment}"
+      PackageType: Image
+      ImageUri: !Sub "${ChatAgentECR.RepositoryUri}:latest"
+      Environment:
+        Variables:
+          ENVIRONMENT: !Ref Environment
+          DYNAMODB_TABLE: !Ref UserManagementTable
+          KG_BUCKET: "madsift"
+          GRAPH_DB_QUERY_ENDPOINT: !If [IsDevelopment, "http://fuseki-server:3030/kg/query", ""]
+          GRAPH_DB_UPLOAD_ENDPOINT: !If [IsDevelopment, "http://fuseki-server:3030/kg/data", ""]
+          USE_BEDROCK: true
+      Events:
+        ChatApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /chat
+            Method: post
+
+      Policies:
+        - !Ref MadsiftAccessPolicy
+        - DynamoDBCrudPolicy: { TableName: !Ref UserManagementTable }
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+                - bedrock:InvokeModelWithResponseStream
+              Resource: !Sub "arn:aws:bedrock:${AWS::Region}::foundation-model/*"
+    Metadata:
+      DockerTag: latest
+      DockerContext: backend/
+      Dockerfile: lambda_functions/chat_agent/Dockerfile
+
+  # ------------------------------------------------------
+  # Lambda: KGProcessorFunction
+  # ------------------------------------------------------
+
+  # Lambda Function
+  AutoKGProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-autokg-processor-${Environment}"
+      PackageType: Image
+      ImageUri: !Sub "${AutoKgProcessorECR.RepositoryUri}:latest"
+      MemorySize: 3008
+      Timeout: 900
+      Environment:
+        Variables:
+          ENVIRONMENT: !Ref Environment
+          KG_BUCKET: "madsift"
+          JOBS_TABLE_NAME: !Ref MonitoringJobsTable
+          KG_PROCESSING_QUEUE_URL: !Ref KGProcessingQueue
+          EVENTBRIDGE_ROLE_ARN: !GetAtt EventBridgeSchedulerRole.Arn
+          NLTK_DATA: "/var/task/data/nltk_data"
+          DEPLOY_VERSION: "v2"
+      Events:
+        AutoKgApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /autokg-processor
+            Method: post
+        AutoKgStatusApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /autokg-processor/status/{job_id}
+            Method: get
+        AutoKGSQSEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt KGProcessingQueue.Arn
+            BatchSize: 1
+      Policies:
+        - !Ref MadsiftAccessPolicy
+        - DynamoDBCrudPolicy: { TableName: !Ref MonitoringJobsTable }
+        - SQSSendMessagePolicy: { QueueName: !GetAtt KGProcessingQueue.QueueName }
+        - SQSPollerPolicy: { QueueName: !GetAtt KGProcessingQueue.QueueName }
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+                - bedrock:InvokeModelWithResponseStream
+              Resource: !Sub "arn:aws:bedrock:${AWS::Region}::foundation-model/*"
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeAgent
+              Resource: !Sub "arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:agent/*"
+            - Effect: Allow
+              Action:
+                - scheduler:CreateSchedule
+                - scheduler:DeleteSchedule
+              Resource: !Sub "arn:aws:scheduler:${AWS::Region}:${AWS::AccountId}:schedule/default/*"
+            - Effect: Allow
+              Action: iam:PassRole
+              Resource: !GetAtt EventBridgeSchedulerRole.Arn
+    Metadata:
+      DockerTag: latest
+      DockerContext: backend/
+      Dockerfile: lambda_functions/autokg_processor/Dockerfile
+
+
+  # ------------------------------------------------------
+  # Lambda: HealthCheckFunction
+  # ------------------------------------------------------
+  HealthCheckFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-health-${Environment}"
+      Runtime: python3.11
+      CodeUri: backend/lambda_functions/health_simple/
+      Handler: handler.handler
+      MemorySize: 128
+      Timeout: 10
+      Environment:
+        Variables:
+          ENVIRONMENT: !Ref Environment
+      Events:
+        HealthApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApiGateway
+            Path: /health
+            Method: get
+
+        DLQProcessor:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt KGProcessingDLQ.Arn
+            BatchSize: 1
+      Policies:
+        - SQSPollerPolicy:
+            QueueName: !GetAtt KGProcessingDLQ.QueueName
+
+  # ------------------------------------------------------
+  # CloudWatch Log Retention
+  # ------------------------------------------------------
+  ChatAgentLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${ChatAgentFunction}"
+      RetentionInDays: 14
+
+
+  AutoKGProcessorLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AutoKGProcessorFunction}"
+      RetentionInDays: 14
+
+  HealthCheckLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${HealthCheckFunction}"
+      RetentionInDays: 14
+
+# ------------------------------------------------------
+# Outputs
+# ------------------------------------------------------
+Outputs:
+  ApiGatewayUrl:
+    Description: "API Gateway endpoint URL"
+    Value: !Sub "https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${Environment}"
+    Export:
+      Name: !Sub "${AWS::StackName}-ApiUrl"
+
+  ChatAgentECRUri:
+    Description: "ECR URI for Chat Agent Lambda"
+    Value: !GetAtt ChatAgentECR.RepositoryUri
+    Export:
+      Name: !Sub "${AWS::StackName}-ChatAgentECR"
+
+  StreamlitECRUri:
+    Description: "ECR URI for Streamlit UI - Use this for App Runner deployment"
+    Value: !GetAtt StreamlitECR.RepositoryUri
+    Export:
+      Name: !Sub "${AWS::StackName}-StreamlitECR"
+
+
+  AutoKgProcessorECRUri:
+    Description: "ECR URI for Auto KG Processor Lambda"
+    Value: !GetAtt AutoKgProcessorECR.RepositoryUri
+
+  AutoKgProcessorUrl:
+    Description: "Auto KG Processor endpoint URL"
+    Value: !Sub "https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/autokg-processor"

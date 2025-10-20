@@ -1,0 +1,4 @@
+docker_app/samconfig.toml
+docker_app/lightsail_deploy.sh
+__pycache__/
+docker_app/.aws-sam/

@@ -1,0 +1,12 @@
+# ui/requirements.txt
+
+# --- Web Framework & UI ---
+streamlit>=1.28.0
+streamlit-cognito-auth>=1.3.1 # For user authentication in the UI
+plotly # For creating charts and plots to display
+
+# --- Networking ---
+requests>=2.31.0 # ESSENTIAL: For making API calls to your SAM backend
+
+# --- Configuration (optional but good practice) ---
+python-dotenv>=1.0.0

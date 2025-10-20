@@ -1,0 +1,45 @@
+# backend/requirements.txt
+
+# --- Core Agent Framework ---
+strands-agents>=1.9.0
+strands-agents-tools
+
+# --- AI/ML Model Libraries ---
+#openai>=1.0.0
+#anthropic>=0.25.0
+#langchain>=0.1.0
+#ollama>=0.1.0 # <-- The missing package that caused the last error
+
+# --- Data Processing & Knowledge Graph ---
+pandas==2.1.4
+numpy==1.26.4
+rdflib>=7.0.0
+networkx>=2.6.0
+
+# --- Configuration & Data Validation ---
+pyyaml>=6.0.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.0
+
+# --- AWS SDK & Database ---
+boto3>=1.34.0
+#gremlinpython>=3.6.0
+
+# --- Networking & Async (often used by agent tools) ---
+requests>=2.31.0
+aiohttp>=3.8.0
+httpx>=0.25.0
+asyncio-throttle>=1.0.0
+
+# --- System Monitoring ---
+psutil>=5.9.0
+
+bedrock-agentcore
+python-jose[cryptography] 
+pyoxigraph
+lancedb==0.10.2 
+networkx
+nltk
+python-json-logger
+praw
