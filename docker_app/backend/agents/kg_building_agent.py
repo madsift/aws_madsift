@@ -47,6 +47,7 @@ class ClaimsExtractionAgent:
         except Exception as e:
             print(f"⚠️ ClaimsExtractionAgent initialization failed: {e}")
 
+
     def extract_claims_from_texts(self, texts: List[str], max_claims_per_text: int = 3) -> Dict[int, List[Dict[str, str]]]:
         """
         Extracts claims from a LIST of texts in a single batch call.
@@ -55,9 +56,7 @@ class ClaimsExtractionAgent:
         if not self.agent or not texts:
             return {}
             
-        # Build a numbered list of texts for the prompt
         prompt_texts = "\n".join([f"Text {i+1}: \"{text}\"" for i, text in enumerate(texts)])
-        
         prompt = (
             f"For each of the following texts, extract up to {max_claims_per_text} concise factual claims.\n"
             "Match the output JSON schema exactly, providing a result for each text_id.\n\n"
@@ -65,20 +64,37 @@ class ClaimsExtractionAgent:
         )
         
         try:
-            # Use the agent's structured_output with our BATCH Pydantic model
-            batch_result = self.agent.structured_output(BatchClaimExtractionResult, prompt)
+            # Get the raw output from the agent, which might be a string
+            agent_response = self.agent.structured_output(BatchClaimExtractionResult, prompt)
+            
+            batch_result = None
+            # Check if the agent returned a string instead of a parsed object
+            if isinstance(agent_response, str):
+                try:
+                    # Parse the JSON string into a Python dictionary
+                    parsed_data = json.loads(agent_response)
+                    # Create the Pydantic model from the parsed dictionary
+                    batch_result = BatchClaimExtractionResult(**parsed_data)
+                except (json.JSONDecodeError, TypeError) as e:
+                    print(f"⚠️ Failed to parse agent's string response for batch claims: {e}")
+                    return {}
+            else:
+                # If it's already a Pydantic object, use it directly
+                batch_result = agent_response
             
             # Convert the Pydantic result into a simple dictionary for the caller
             final_claims_map = {}
-            for res in batch_result.results:
-                original_index = res.text_id - 1 # Convert from 1-based ID to 0-based index
-                claims_for_text = []
-                for c in res.claims[:max_claims_per_text]:
-                    claim_text = (c.claim_summary or "").strip()
-                    lang = (c.language or "und")
-                    if claim_text:
-                        claims_for_text.append({"claim": claim_text, "language": lang})
-                final_claims_map[original_index] = claims_for_text
+            # Add a safety check before iterating
+            if batch_result and hasattr(batch_result, 'results'):
+                for res in batch_result.results:
+                    original_index = res.text_id - 1 # Convert from 1-based ID to 0-based index
+                    claims_for_text = []
+                    for c in res.claims[:max_claims_per_text]:
+                        claim_text = (c.claim_summary or "").strip()
+                        lang = (c.language or "und")
+                        if claim_text:
+                            claims_for_text.append({"claim": claim_text, "language": lang})
+                    final_claims_map[original_index] = claims_for_text
             return final_claims_map
         except Exception as e:
             print(f"⚠️ Batch claim extraction failed: {e}")
