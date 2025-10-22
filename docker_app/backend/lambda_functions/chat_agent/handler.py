@@ -90,7 +90,7 @@ def lambda_handler(event, context, user_info):
                 'body': json.dumps(agent_response)
             }
         if body.get('type')=='summarize':
-            output = summarize_graph(kg_path, query_text=user_message, ldb_path=ldb_path)
+            output = summarize_graph(kg_path, query_text='', ldb_path=ldb_path)
             return {
                 'statusCode': 200,
                 'headers': {

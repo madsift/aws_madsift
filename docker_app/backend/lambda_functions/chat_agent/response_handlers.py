@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-Response Handlers - Different response generation strategies
+Response Handlers - Unified, Agent-First Response Generation
 
 This module handles:
-- Strands agent response generation
-- Intelligent fallback responses
-- Conversation context responses
-- KG-related response routing
+- Intelligent pre-routing to distinguish chit-chat from substantive queries.
+- Defaulting to the powerful Strands agent for all real questions.
+- Generating simple contextual responses for greetings and fallbacks.
 """
 
 import json
@@ -18,76 +17,128 @@ from common.llm_models import get_default_model
 
 
 class ResponseHandlers:
-    """Handles different types of response generation"""
+    """Handles the primary response generation logic with an Agent-First approach."""
     
     def __init__(self, session_manager, kg_operations):
         self.session_manager = session_manager
         self.kg_operations = kg_operations
 
-    def _invoke_agent_sync(self, agent, prompt: str, timeout: int = 60) -> Optional[str]:
+    # --- NEW: PRIMARY ENTRY POINT ---
+    def handle_chat_request(self, agent, user_message: str, chat_options: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Invoke agent.invoke_async(prompt) and return the textual content.
-        Works both when an event loop is running or not.
-        Returns None on failure.
+        Main entry point for handling a user's chat message.
+        It uses an LLM router to separate simple chit-chat from complex queries,
+        ensuring the powerful Strands agent is used for all substantive questions.
         """
-        try:
-            loop = asyncio.get_event_loop()
-            if loop.is_running():
-                # create a task and wrap it to run thread-safely
-                task = asyncio.create_task(agent.invoke_async(prompt))
-                response = asyncio.run_coroutine_threadsafe(task, loop).result(timeout)
-            else:
-                # no running loop in this thread: run directly
-                response = asyncio.run(agent.invoke_async(prompt))
-        except RuntimeError:
-            # fallback if get_event_loop() fails for some reason
-            try:
-                response = asyncio.run(agent.invoke_async(prompt))
-            except Exception as e:
-                print(f"[ResponseHandlers] _invoke_agent_sync runtime error: {e}")
-                return None
-        except Exception as e:
-            print(f"[ResponseHandlers] Error invoking agent async: {e}")
-            return None
+        print("🤖 Handling chat request with new Agent-First logic...")
 
-        # Normalize response -> text
+        # 1. First, check if the message is simple chit-chat.
+        if self._is_chitchat(user_message):
+            print("✅ Intent classified as chit-chat. Generating simple contextual response.")
+            content = self._generate_contextual_response(user_message)
+            source = "contextual_chitchat"
+            tools_used = ["Intent Classifier", "Session Manager"]
+        
+        # 2. If it's not chit-chat, ALWAYS use the powerful Strands agent.
+        else:
+            print("✅ Intent classified as KG Query. Invoking main Strands agent...")
+            try:
+                # The get_strands_response method already handles history and context.
+                # We are just wrapping it to catch potential failures.
+                agent_response_dict = self.get_strands_response(agent, user_message, chat_options)
+                
+                # Check if the agent call was successful
+                if agent_response_dict and "error" not in agent_response_dict.get("content", "").lower():
+                    return agent_response_dict
+                else:
+                    print("⚠️ Strands agent returned an error or empty response. Falling back.")
+                    content = self._generate_contextual_response(user_message)
+                    source = "agent_failure_fallback"
+                    tools_used = ["Session Manager"]
+
+            except Exception as e:
+                print(f"❌ Catastrophic failure during agent invocation: {e}. Falling back.")
+                content = "I encountered an unexpected issue while processing your request. Please try again."
+                source = "exception_fallback"
+                tools_used = ["Error Handler"]
+
+        # 3. Format and return the fallback/chitchat response.
+        self.session_manager.add_to_conversation_history("assistant", content)
+        return {
+            "content": content,
+            "tools_used": tools_used,
+            "citations": [],
+            "confidence": 70,
+            "timestamp": datetime.now().strftime("%H:%M:%S"),
+            "source": source,
+            "session_id": self.session_manager.session_id
+        }
+
+    # --- NEW: LLM-based Intent Classifier ---
+    def _is_chitchat(self, user_message: str) -> bool:
+        """
+        Uses a fast LLM to classify user intent: is this a query for the
+        Knowledge Graph or just general chit-chat?
+        """
+        # Short messages are often chit-chat, but we let the LLM decide.
+        if len(user_message) > 150:
+            return False
+
+        print("[Router] Classifying user intent...")
+        
         try:
-            if isinstance(response, dict):
-                # common keys used by different runtimes
-                return response.get("response") or response.get("content") or response.get("output") or json.dumps(response)
-            elif hasattr(response, "content"):
-                return response.content
-            else:
-                return str(response)
+            # Use a fast and cheap model for classification if available
+            router_model = get_default_model(model_id="anthropic.claude-3-haiku-20240307-v1:0") 
+        except Exception:
+            print("[Router] Haiku not available, using default model for routing.")
+            router_model = get_default_model()
+
+        router_prompt = f"""
+            Your task is to classify the user's intent into one of two categories: "KG_QUERY" or "CHITCHAT".
+
+            - "KG_QUERY" is for any question that seeks information, asks for data, or could be answered by a knowledge base. This includes searching, listing, summarizing, or asking about topics, claims, posts, people, or events.
+            - "CHITCHAT" is for simple greetings (hi, hello), thank yous, or conversational filler that does not seek specific information.
+
+            User message: "{user_message}"
+
+            Based on the message, what is the user's intent? Respond with only the single word "KG_QUERY" or "CHITCHAT".
+        """
+        
+        try:
+            # For a simple classification, a direct, non-streaming call is best.
+            # We use the internal _invoke_agent_sync to handle the async complexity.
+            classification = self._invoke_agent_sync(router_model, router_prompt)
+            
+            if classification:
+                classification = classification.strip().replace('"', '')
+                print(f"[Router] Intent classified as: {classification}")
+                return classification == "CHITCHAT"
+            
+            return False # Default to not chit-chat if classification returns nothing
+            
         except Exception as e:
-            print(f"[ResponseHandlers] Failed to extract text from agent response: {e}")
-            return None
+            print(f"[Router] Intent classification failed: {e}. Defaulting to not chit-chat.")
+            # When in doubt, assume it's a real query to be safe.
+            return False
 
     def get_strands_response(self, agent, user_message: str, chat_options: Dict[str, Any]) -> Dict[str, Any]:
         """Get response from Strands agent (uses invoke_async safely)."""
-
-        # Add KG context to the message
         enhanced_message = self.kg_operations._add_kg_context(user_message)
-
         print(f"🤖 Invoking Strands agent with message: {enhanced_message[:100]}...")
 
-        # Use the same async-safe invocation pattern (delegated to helper)
         text = self._invoke_agent_sync(agent, enhanced_message)
         if text is None:
-            # fallback: return an error-like assistant response
             print("[ResponseHandlers] Agent returned no text.")
-            content = "Sorry — I couldn't get a response from the agent."
+            content = "Sorry, I couldn't get a response from the agent. There might be an issue with the underlying model."
         else:
             content = text
 
         print(f"✅ Strands agent response received: {len(content)} chars")
-
-        # Add to conversation history
         self.session_manager.add_to_conversation_history("assistant", content)
 
         return {
             "content": content,
-            "tools_used": ["Strands Agent", "Session Memory"],
+            "tools_used": ["Strands Agent", "Session Memory", "GraphRAGTool"],
             "citations": [],
             "confidence": 90,
             "timestamp": datetime.now().strftime("%H:%M:%S"),
@@ -95,128 +146,41 @@ class ResponseHandlers:
             "session_id": self.session_manager.session_id
         }
 
+    def _invoke_agent_sync(self, agent, prompt: str, timeout: int = 60) -> Optional[str]:
+        """
+        Safely invoke an async agent method from a synchronous context.
+        This handles cases where an event loop may or may not be running.
+        """
+        try:
+            loop = asyncio.get_running_loop()
+            if loop.is_running():
+                task = asyncio.create_task(agent.invoke_async(prompt))
+                response = asyncio.run_coroutine_threadsafe(task, loop).result(timeout)
+            else:
+                response = asyncio.run(agent.invoke_async(prompt))
+        except RuntimeError:
+            response = asyncio.run(agent.invoke_async(prompt))
+        except Exception as e:
+            print(f"[ResponseHandlers] Error invoking agent async: {e}")
+            return None
+
+        try:
+            if hasattr(response, "content"): return response.content
+            elif isinstance(response, dict): return response.get("response") or response.get("content") or json.dumps(response)
+            else: return str(response)
+        except Exception as e:
+            print(f"[ResponseHandlers] Failed to extract text from agent response: {e}")
+            return None
+
     def _generate_contextual_response(self, user_message: str) -> str:
         """
         Generate a conversational fallback answer using history.
-        Used when no KG or vector results are found.
+        Used for simple greetings or as a final safety net.
         """
-        if len(self.session_manager.conversation_history) > 1:
-            context_intro = "Based on our earlier conversation, "
-        else:
-            context_intro = ""
-
-        msg = user_message.lower()
-        if any(greet in msg for greet in ["hi", "hello", "hey"]):
+        msg_lower = user_message.lower()
+        if any(greet in msg_lower for greet in ["hi", "hello", "hey"]):
             if len(self.session_manager.conversation_history) > 1:
-                return (
-                    "Hello again! I remember our earlier discussion. "
-                    "Would you like to keep exploring the Knowledge Graph or vector store?"
-                )
-            return (
-                "Hello! I'm your assistant for the Rumour Verification Framework. "
-                "I can query Knowledge Graphs, search the LanceDB vector store, "
-                "and maintain context across sessions. What would you like to do?"
-            )
-
-        return (
-            f"{context_intro}I'm here to help you navigate the Knowledge Graph and vector store. "
-            "Ask me about specific claims, posts, or datasets—or anything else you'd like to explore."
-        )
-
-    def _should_query_kg(self, user_message: str, agent_response: str = "") -> bool:
-        """
-        Heuristic to decide if a user query should trigger KG/vector retrieval.
-        Checks for schema-related keywords or LLM hints.
-        """
-        msg = user_message.lower()
-        kg_terms = [
-            "claim", "claims", "post", "posts", "user", "users",
-            "dataset", "data", "graph", "node", "edge",
-            "find", "search", "list", "show", "retrieve",
-            "knowledge graph", "triple", "sparql", "rdf", "sioc", "schema"
-        ]
-
-        if any(t in msg for t in kg_terms):
-            return True
-
-        # fall back to inspecting agent suggestion
-        resp = agent_response.lower()
-        if any(p in resp for p in ["query the", "from the graph", "in the kg", "knowledge graph"]):
-            return True
-
-        return False
-
-    def get_intelligent_fallback_response(self, user_message: str, chat_options: Dict[str, Any]) -> Dict[str, Any]:
-        """Intelligent fallback with session management and smart routing"""
-
-        print(f"🧠 Using intelligent fallback with session management")
-
-        # Check conversation history for context
-        context_response = self.session_manager._check_conversation_context(user_message)
-        if context_response:
-            print("✅ Answered from conversation history")
-            return context_response
-
-        # Check if this is a KG-related question - ALWAYS use real KG data
-        if self._should_query_kg(user_message, ""):
-            print(f"🔍 Detected KG question, querying real Knowledge Graph...")
-            try:
-                from .real_kg_chat import kg_chat_system
-
-                # Check if KG is loaded
-                if not kg_chat_system.kg_loaded:
-                    content = "No Knowledge Graph is currently loaded. Please load a Knowledge Graph first to query data about claims, posts, or users."
-                else:
-                    # Get KG statistics for context
-                    stats = kg_chat_system.get_kg_statistics()
-                    platform = stats.get('platform', 'Unknown')
-                    nodes = stats.get('nodes', {})
-
-                    print(f"🔍 Querying {platform} KG with: {user_message[:50]}...")
-
-                    # Execute the query using real KG system
-                    kg_response = kg_chat_system.answer_question(user_message)
-
-                    if kg_response.get('results_count', 0) > 0:
-                        content = kg_response.get('content', '')
-                        print(f"✅ Found {kg_response.get('results_count', 0)} results from KG")
-
-                        # Add conversational context if we have history
-                        if len(self.session_manager.conversation_history) > 1:
-                            content = f"Based on our conversation and the {platform} Knowledge Graph:\n\n{content}"
-
-                        # Add to conversation history
-                        self.session_manager.add_to_conversation_history("assistant", content)
-
-                        return {
-                            "content": content,
-                            "tools_used": ["Session Manager", "Knowledge Graph", f"{platform} KG Query"],
-                            "citations": [],
-                            "confidence": kg_response.get('confidence', 85),
-                            "timestamp": datetime.now().strftime("%H:%M:%S"),
-                            "source": "enhanced_fallback_kg",
-                            "session_id": self.session_manager.session_id
-                        }
-                    else:
-                        print(f"⚠️ No results found in KG")
-                        content = f"No specific results found for '{user_message}' in the {platform} Knowledge Graph. The {platform} KG contains {nodes.get('posts', 0)} posts and {nodes.get('claims', 0)} claims. Try asking about available claims, posts, or users."
-
-            except Exception as kg_error:
-                print(f"❌ KG query failed: {kg_error}")
-                content = "I'm having trouble accessing the Knowledge Graph right now. Please make sure it's loaded and try again."
-        else:
-            # General conversation response with history context
-            content = self._generate_contextual_response(user_message)
-
-        # Add to conversation history
-        self.session_manager.add_to_conversation_history("assistant", content)
-
-        return {
-            "content": content,
-            "tools_used": ["Session Manager", "Conversation Context"],
-            "citations": [],
-            "confidence": 75,
-            "timestamp": datetime.now().strftime("%H:%M:%S"),
-            "source": "enhanced_fallback",
-            "session_id": self.session_manager.session_id
-        }
+                return "Hello again! How can I help you explore the Knowledge Graph?"
+            return "Hello! I'm your assistant for the Rumour Verification Framework. What would you like to know?"
+        
+        return "I can help you query the Knowledge Graph and vector store. Please ask me about claims, posts, or any topic you'd like to explore."

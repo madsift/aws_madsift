@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Graph RAG Tool - Hybrid Graph-RAG functionality extracted from EnhancedChatAgent
+Graph RAG Tool - Hybrid Graph-RAG functionality with Dynamic Few-Shot Prompting
 
 This module contains the hybrid Graph-RAG tool that:
-  - asks the LLM to produce a SPARQL query and semantic keywords (plan),
-  - executes the SPARQL against Oxigraph,
-  - runs a semantic vector search in LanceDB using the produced keywords,
-  - fuses and re-ranks results with an adjustable hybrid scoring,
-  - returns a compact, provenance-rich context for the LLM to answer.
+  - Pre-fetches real, relevant examples from the KG.
+  - Asks the LLM to produce a SPARQL query and keywords, primed with the dynamic examples.
+  - Executes the SPARQL against Oxigraph and captures all variables.
+  - Runs a semantic vector search in LanceDB.
+  - Fuses and re-ranks results.
+  - Returns a compact, provenance-rich context for the LLM to answer.
 """
 
 import json
@@ -15,7 +16,6 @@ import re
 import time
 import traceback
 import asyncio
-from datetime import datetime
 from typing import Dict, Any, Optional, List, Tuple
 
 from common.llm_models import get_default_model
@@ -29,6 +29,63 @@ class GraphRAGTool:
         self.kg_store = kg_store
         self.vector_db = vector_db
         self.vector_table = vector_table
+
+    def _extract_simple_keywords(self, query: str, num_keywords: int = 3) -> List[str]:
+        """A simple keyword extractor to find terms for the pre-fetch query."""
+        stop_words = {'the', 'a', 'an', 'is', 'are', 'was', 'were', 'of', 'in', 'on', 'for', 'with', 'about', 'and', 'or', 'list', 'show', 'get', 'find'}
+        words = re.findall(r'\b\w{3,}\b', query.lower())
+        return [word for word in words if word not in stop_words][:num_keywords]
+
+    def _prefetch_examples(self, keywords: List[str], limit: int = 3) -> str:
+        """
+        Runs a simple, broad SPARQL query to find a few relevant example triples
+        from the Knowledge Graph to be used in the planner prompt.
+        """
+        if not self.kg_store or not keywords:
+            return "No relevant examples found."
+
+        # Create a FILTER clause that checks for any of the keywords
+        filter_conditions = [f'CONTAINS(LCASE(STR(?o)), "{kw}")' for kw in keywords]
+        sparql_filter = f"FILTER ( {' || '.join(filter_conditions)} )"
+
+        prefetch_query = f"""
+            SELECT ?s ?p ?o WHERE {{
+              ?s ?p ?o .
+              {sparql_filter}
+            }} LIMIT {limit}
+        """
+        
+        try:
+            results_iter = self.kg_store.query(prefetch_query)
+            
+            formatted_examples = []
+            for solution in results_iter:
+                s_term = solution.get('s')
+                p_term = solution.get('p')
+                o_term = solution.get('o')
+
+                if not all([s_term, p_term, o_term]):
+                    continue
+
+                s = s_term.n3()
+                p = p_term.n3()
+                o = o_term.n3()
+                
+                # Clean up the n3 representation for better readability in the prompt
+                s = s.split('/')[-1].replace('>', '')
+                p = p.split('/')[-1].replace('>', '')
+                
+                formatted_examples.append(f"ex:{s} {p} {o} .")
+
+            if not formatted_examples:
+                return "No specific examples found in the KG for these keywords."
+                
+            # Return a nicely formatted block of text for the prompt
+            return "Here are some RELEVANT EXAMPLES from the actual graph:\n" + "\n".join(formatted_examples)
+
+        except Exception as e:
+            print(f"[Prefetch] Could not fetch examples: {e}")
+            return "Could not retrieve examples from the Knowledge Graph."
     
     def query_combined_graph_rag(
         self,
@@ -38,43 +95,67 @@ class GraphRAGTool:
         re_rank_with_cross_encoder: bool = False
     ) -> str:
         """
-        Full-power hybrid Graph-RAG:
-          1) Ask the LLM to generate a JSON plan with 'sparql' and 'keywords'.
-          2) Execute the SPARQL plan against Oxigraph.
-          3) Run vector search on LanceDB using generated keywords + user_query fallback.
-          4) Fuse results by hybrid scoring and optional cross-encoder re-rank.
-          5) Return a JSON object { "success": bool, "context": "...", "summary": "...", "count": int }
+        Full-power hybrid Graph-RAG with Dynamic Few-Shot Prompting.
         """
-
         start_time = time.time()
         print(f"[Hybrid] Running combined Graph-RAG for: {user_query[:200]}")
+        
+        # The PLANNER_PROMPT now includes a placeholder for our dynamic examples.
         PLANNER_PROMPT = """
-            You are a concise retrieval planner.  Your job: for the given user query, return JSON only (no explanation, no extra text) with two keys:
-              - "sparql": a single SPARQL SELECT query string (complete and executable) that uses the prefixes below.
-              - "keywords": an array of 2–5 short search keywords useful for vector search.
+            You are a concise retrieval planner. Your job is to return JSON only (no extra text) with "sparql" and "keywords" keys.
 
-            Always include these prefix declarations at the top of every SPARQL query:
+            Always include these prefixes in your SPARQL query:
             PREFIX ex: <http://example.org/>
             PREFIX prov: <http://www.w3.org/ns/prov#>
             PREFIX sioc: <http://rdfs.org/sioc/ns#>
-            PREFIX schema: <http://schema.org/>
+            PREFIX schema1: <http://schema.org/>
+            PREFIX ns1: <http://example.org/pred/>
 
-            Important:
-            - Use the graph schema: Claims are `ex:Claim`, text is `ex:canonicalForm`, language `ex:hasLanguage`, truth `ex:truthStatus`, and `prov:wasDerivedFrom` links to source posts.
-            - Use case-insensitive filters: e.g. FILTER(CONTAINS(LCASE(STR(?text)), "putin"))
-            - Limit results to 10 (or the provided limit).
+            ### Schema Guide:
+            - Claims (`ex:Claim`) have:
+                - Text: `ex:canonicalForm`
+                - Verification Status: `ns1:label` (e.g., "SUPPORTED")
+            - Posts (`sioc:Post`) have:
+                - Headline: `schema1:headline`
 
-            Output example (exact JSON only):
-            {
-              "sparql": "PREFIX ex: <http://example.org/> PREFIX prov: <http://www.w3.org/ns/prov#> SELECT ?claim ?text ?status ?source WHERE { ?claim a ex:Claim ; ex:canonicalForm ?text ; ex:truthStatus ?status ; prov:wasDerivedFrom ?source . FILTER(CONTAINS(LCASE(STR(?text)), \"putin\") && CONTAINS(LCASE(STR(?text)), \"girlfriend\")) } LIMIT 10",
-              "keywords": ["putin girlfriend", "Alina Kabaeva birth", "Putin absent girlfriend birth"]
-            }
+            {relevant_examples}
+
+            ### Your Task:
+            Based on the user's query and the relevant examples (if any), perform the following:
+            1.  **Analyze user intent.** If the user asks to "list" or "show" items and provides no specific criteria, create a broad SPARQL query for that type.
+            2.  For search queries, write a specific SPARQL query using a case-insensitive `FILTER`.
+            3.  Generate relevant keywords for vector search.
+
+            ### User Query:
+            "{user_query}"
+
+            ### Output Example (for a general request):
+            {{
+              "sparql": "PREFIX ex: <http://example.org/> PREFIX ns1: <http://example.org/pred/> SELECT ?claim ?text ?status WHERE {{ ?claim a ex:Claim ; ex:canonicalForm ?text ; ns1:label ?status . }} LIMIT 10",
+              "keywords": ["list all claims", "show claims"]
+            }}
             """
 
         try:
-            # 1️⃣ Build LLM plan
-            plan_prompt = self._build_plan_prompt(user_query=user_query)
-            plan_text = self._generate_plan_text(plan_prompt, PLANNER_PROMPT)
+            # --- Dynamic Few-Shot Prompting Logic ---
+            
+            # 1. Extract keywords for pre-fetching
+            prefetch_keywords = self._extract_simple_keywords(user_query)
+            
+            # 2. Pre-fetch real examples from the KG
+            formatted_examples = self._prefetch_examples(prefetch_keywords)
+            
+            # 3. Inject the dynamic examples and user query into the final prompt
+            final_planner_prompt = PLANNER_PROMPT.format(
+                relevant_examples=formatted_examples,
+                user_query=user_query
+            )
+
+            # 4. Generate the plan using the new, context-rich prompt
+            plan_text = self._generate_plan_text(final_planner_prompt)
+            
+            # --- End of Dynamic Logic ---
+
             print('plan_text', plan_text)
 
             if not plan_text:
@@ -92,30 +173,26 @@ class GraphRAGTool:
             
             # 2️⃣ Run SPARQL plan (if any)
             graph_candidates: List[Dict[str, Any]] = []
-            if sparql_query:
+            if sparql_query and self.kg_store:
                 try:
                     print(f"[Hybrid] Executing SPARQL:\n{sparql_query}")
                     results_iter = self.kg_store.query(sparql_query)
                     vars_list = [v.value for v in results_iter.variables]
                     results_list = list(results_iter)
+
                     for sol in results_list:
-                        candidate = {"uri": None, "text": None}
-                        for var in vars_list:
-                            term = sol[var]
-                            if term:
-                                sval = str(term.value)
-                                if any(k in var.lower() for k in ("text", "label", "canonical")) and not candidate["text"]:
-                                    candidate["text"] = sval
-                                if any(k in var.lower() for k in ("node", "uri", "id")) and not candidate["uri"]:
-                                    candidate["uri"] = sval
-                        if not candidate["text"]:
-                            for var in vars_list:
-                                term = sol[var]
-                                if term:
-                                    candidate["text"] = str(term.value)
-                                    break
-                        if not candidate["uri"]:
-                            candidate["uri"] = candidate["text"][:128] if candidate["text"] else None
+                        # --- IMPROVED: Capture all variables from the query ---
+                        result_dict = {var: str(sol[var].value) for var in vars_list if sol.get(var)}
+
+                        # Create a nicely formatted text string from the dictionary
+                        text_parts = [f"{key}: {value}" for key, value in result_dict.items()]
+                        full_text = " | ".join(text_parts)
+
+                        candidate = {
+                            "uri": result_dict.get(vars_list[0], full_text[:128]), # Fallback URI
+                            "text": full_text
+                        }
+                        
                         if candidate["text"]:
                             graph_candidates.append(candidate)
                 except Exception as e:
@@ -131,14 +208,8 @@ class GraphRAGTool:
                         print("[Hybrid] Query embedding failed; skipping vector retrieval.")
                     else:
                         try:
-                            try:
-                                res = self.vector_table.search(q_emb).limit(top_k_vector).to_list()
-                            except Exception:
-                                try:
-                                    res = self.vector_table.search(q_emb, "vector").limit(top_k_vector).to_pylist()
-                                except Exception:
-                                    res = list(self.vector_table.search(q_emb).limit(top_k_vector))
-
+                            search_builder = self.vector_table.search(q_emb).limit(top_k_vector)
+                            res = search_builder.to_list()
                             for r in res:
                                 text = r.get("text") or r.get("content") or r.get("payload") or r.get("doc")
                                 uri = r.get("uri") or (r.get("metadata") or {}).get("uri")
@@ -165,33 +236,16 @@ class GraphRAGTool:
 
             for g in graph_candidates:
                 uri = g.get("uri") or (g.get("text")[:128] if g.get("text") else None)
-                if not uri:
-                    continue
-                merged[uri] = {
-                    "uri": uri,
-                    "text": g.get("text"),
-                    "in_graph": True,
-                    "distance": None,
-                    "raw_vector": None,
-                    "graph_rank": 1,
-                }
+                if not uri: continue
+                merged[uri] = { "uri": uri, "text": g.get("text"), "in_graph": True, "distance": None, "graph_rank": 1 }
 
             for v in vector_candidates:
                 uri = v.get("uri") or (v.get("text")[:128] if v.get("text") else None)
-                if not uri:
-                    continue
+                if not uri: continue
                 if uri in merged:
                     merged[uri]["distance"] = v.get("distance")
-                    merged[uri]["raw_vector"] = v.get("raw")
                 else:
-                    merged[uri] = {
-                        "uri": uri,
-                        "text": v.get("text"),
-                        "in_graph": False,
-                        "distance": v.get("distance"),
-                        "raw_vector": v.get("raw"),
-                        "graph_rank": 0,
-                    }
+                    merged[uri] = { "uri": uri, "text": v.get("text"), "in_graph": False, "distance": v.get("distance"), "graph_rank": 0 }
 
             scored: List[Tuple[float, Dict[str, Any]]] = []
             for uri, item in merged.items():
@@ -219,184 +273,82 @@ class GraphRAGTool:
                 dist = it.get("distance")
                 dist_str = f", dist={dist:.4f}" if dist is not None else ""
                 text_snip = (it.get("text") or "")[:400].replace("\n", " ")
-                formatted_lines.append(f"{i}. [{prov}{dist_str}] {text_snip}\n   uri: {it.get('uri')}")
+                formatted_lines.append(f"{i}. [{prov}{dist_str}] {text_snip}")
 
             context = "Combined retrieval results (hybrid Graph-RAG):\n\n" + "\n\n".join(formatted_lines)
 
-            # Truncate context if too long for Lambda/Bedrock (safety)
             if len(context) > 5000:
                 context = context[:5000] + "\n...[truncated for brevity]..."
 
             elapsed = round(time.time() - start_time, 2)
             print(f"[Hybrid] Completed hybrid retrieval in {elapsed}s with {len(top_items)} results.")
 
-            # ✅ Return valid JSON always
             return context
 
         except Exception as e:
             print(f"[Hybrid] Fatal error: {e}\n{traceback.format_exc()}")
-            return json.dumps({
-                "success": False,
-                "error": str(e),
-                "traceback": traceback.format_exc(),
-            }, ensure_ascii=False)
+            return json.dumps({ "success": False, "error": str(e) }, ensure_ascii=False)
 
-    def _generate_plan_text(self, plan_prompt: str, planner_system_prompt: str):
-        """
-        Robust planner call using a fresh model instance.
-        - Streams from BedrockModel and captures all partial text chunks.
-        - Returns concatenated plan text as a single string.
-        """
+    def _generate_plan_text(self, plan_prompt: str):
         print("[Planner] Starting planner call...")
-        print("[Planner] plan_prompt repr:", repr(plan_prompt)[:500])
-        print("[Planner] planner_system_prompt repr:", repr(planner_system_prompt)[:500])
-
-        # Create a fresh model (avoid recursive tool issues)
         try:
             local_model = get_default_model()
-            print("[Planner] got local_model:", type(local_model))
         except Exception as e:
-            print("[Planner][ERROR] get_default_model() failed:", e)
+            print(f"[Planner][ERROR] get_default_model() failed: {e}")
             return ""
 
         async def _collect_stream():
             chunks = []
             try:
+                # Note: System prompt is now baked into the main prompt for simplicity with this technique
                 messages = [{"role": "user", "content": [{"type": "text", "text": plan_prompt}]}]
-                print("[Planner] Sending messages:", messages)
-
-                async for event in local_model.stream(messages, system_prompt=planner_system_prompt):
-                    
-                    # ---- FIXED CHUNK EXTRACTION ----
+                async for event in local_model.stream(messages):
                     content = None
-
-                    # Case 1: event is an object with a .content attr (rare)
-                    if hasattr(event, "content"):
-                        content = event.content
-
-                    # Case 2: event is a dict (Bedrock stream format)
+                    if hasattr(event, "content"): content = event.content
                     elif isinstance(event, dict):
-                        # Handle partial delta text
-                        if "contentBlockDelta" in event:
-                            delta = event["contentBlockDelta"].get("delta", {})
-                            content = delta.get("text")
-
-                    # Append valid text chunks
+                        if "contentBlockDelta" in event: content = event["contentBlockDelta"].get("delta", {}).get("text")
+                    
                     if isinstance(content, str) and content.strip():
                         chunks.append(content)
-                    else:
-                        # Only log if it's an unexpected event type (reduce noise)
-                        if isinstance(event, dict) and "messageStop" not in event and "contentBlockStart" not in event:
-                            pass  # Suppress routine streaming events
-
-                # Join collected text pieces
-                text = "".join(chunks)
-                return text
-
+                return "".join(chunks)
             except Exception as ex:
-                print("[Planner][ERROR] Stream exception:", ex)
-                traceback.print_exc()
+                print(f"[Planner][ERROR] Stream exception: {ex}")
                 return ""
 
-        # Run async collector
         try:
             plan_text = asyncio.run(_collect_stream())
-            print("[Planner] plan_text repr:", repr(plan_text)[:800])
-            print("[Planner] plan_text length:", len(plan_text))
+            print(f"[Planner] plan_text length: {len(plan_text)}")
             return plan_text or ""
         except Exception as e:
-            print("[Planner][FATAL] asyncio.run failed:", e)
+            print(f"[Planner][FATAL] asyncio.run failed: {e}")
             return ""
 
-    def _build_plan_prompt(self, user_query: str) -> str:
-        """
-        Build a structured prompt instructing the LLM to generate:
-          1. A SPARQL query tailored to the example.org KG schema.
-          2. Keywords for vector search on node documents.
-        Output must be valid JSON: {"sparql": "...", "keywords": ["..."]}.
-        """
-        prompt = f"""
-            You are an expert in querying RDF Knowledge Graphs and semantic search systems.
-
-            The Knowledge Graph uses these prefixes:
-            @prefix ex: <http://example.org/> .
-            @prefix prov: <http://www.w3.org/ns/prov#> .
-            @prefix schema1: <http://schema.org/> .
-            @prefix sioc: <http://rdfs.org/sioc/ns#> .
-            @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-            ### Important ontology notes
-            - `ex:Claim` instances represent factual claims.
-            - Claims have:
-                - `ex:canonicalForm` → textual content of the claim.
-                - `ex:hasLanguage` → ISO language code (e.g. "en").
-                - `ex:truthStatus` → one of ["true", "false", "unknown"].
-                - `prov:wasDerivedFrom` → links to a post resource (e.g. `ex:post/...`).
-            - `ex:Platform` (e.g. ex:Twitter) describes the platform of origin.
-            - Posts are instances of `ex:Post` or similar.
-
-            The user asked:
-            \"\"\"{user_query}\"\"\"
-
-            Your task:
-            1. Write a SPARQL query that retrieves the most relevant claims, posts, or platforms related to the query.
-               - Prefer using `ex:canonicalForm`, `ex:truthStatus`, and `prov:wasDerivedFrom`.
-               - Include useful variables like ?claim, ?text, ?status, ?source.
-               - Use case-insensitive filtering via `FILTER(CONTAINS(LCASE(str(?text)), "keyword"))`.
-               - Limit to 10 results.
-
-            2. Suggest 3–5 search keywords for semantic vector retrieval that capture the same meaning as the query.
-
-            3. Output **only valid JSON** in this structure:
-            {{
-              "sparql": "<SPARQL QUERY>",
-              "keywords": ["kw1", "kw2", "kw3"]
-            }}
-
-            Example output:
-            {{
-              "sparql": "PREFIX ex: <http://example.org/> PREFIX prov: <http://www.w3.org/ns/prov#> SELECT ?claim ?text ?status ?source WHERE {{ ?claim a ex:Claim ; ex:canonicalForm ?text ; ex:truthStatus ?status ; prov:wasDerivedFrom ?source . FILTER(CONTAINS(LCASE(str(?text)), 'switzerland')) }} LIMIT 10",
-              "keywords": ["switzerland travel", "going to switzerland", "trip to switzerland"]
-            }}
-            """
-        return prompt
-
     def _parse_llm_json(self, text):
-        # try to extract JSON block robustly
-        if not text:
-            return {}
+        if not text: return {}
         s = str(text)
-        # remove ```json blocks etc
         s = re.sub(r"^```(?:json)?\s*", "", s, flags=re.I)
         s = re.sub(r"\s*```$", "", s)
-        # find first {...} block:
         start = s.find('{')
         end = s.rfind('}')
         if start == -1 or end == -1:
-            # log for debugging
-            print("[Planner] Could not find JSON braces. Raw plan:", s[:1000])
+            print(f"[Planner] Could not find JSON braces. Raw plan: {s[:1000]}")
             return {}
         try:
             return json.loads(s[start:end+1])
         except Exception as e:
-            print("[Planner] JSON parse failed:", e, "raw:", s[:1000])
+            print(f"[Planner] JSON parse failed: {e}, raw: {s[:1000]}")
             return {}
 
     def _embed_text(self, text: str) -> Optional[List[float]]:
-        """Create an embedding for the text using your existing embedding pipeline."""
         try:
             emb = generate_embeddings([text], batch_size=1)
-            if emb and len(emb) > 0:
-                return emb[0]
+            return emb[0] if emb else None
         except Exception as e:
             print(f"Embedding error: {e}")
         return None
 
     def _hybrid_score(self, vector_distance: Optional[float], in_graph: bool, alpha: float = 0.75, beta: float = 0.25) -> float:
-        """Combine vector distance (smaller is better) with graph membership into a single score."""
-        if vector_distance is None:
-            vec_score = 0.0
-        else:
-            vec_score = 1.0 / (1.0 + max(1e-6, float(vector_distance)))
+        if vector_distance is None: vec_score = 0.0
+        else: vec_score = 1.0 / (1.0 + max(1e-6, float(vector_distance)))
         graph_boost = 1.0 if in_graph else 0.0
         return alpha * vec_score + beta * graph_boost

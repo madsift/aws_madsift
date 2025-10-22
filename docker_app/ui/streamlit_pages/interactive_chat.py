@@ -114,20 +114,18 @@ def load_summary(job_id: str, username: str) -> dict:
 def display_summary(summary: dict):
     """Display summary in UI"""
     if not summary:
-        st.info("No summary available yet (summaries are generated after 4 iterations)")
+        st.info("No automated summary has been generated yet. Use the summarize button in drop down list below for fresh summarization.")
         return
     
     st.subheader("📊 KG Summary")
-    
-    # Metrics
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric("Total Triples", summary.get('total_triples', 0))
-    with col2:
-        st.metric("Total Claims", summary.get('total_claims', 0))
-    with col3:
-        st.metric("Total Entities", summary.get('total_entities', 0))
-    
+    if summary.get('total_triples', 0) > 0:
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Total Triples", summary.get('total_triples', 0))
+        with col2:
+            st.metric("Total Claims", summary.get('total_claims', 0))
+        with col3:
+            st.metric("Total Entities", summary.get('total_entities', 0))
     # Narrative summary
     st.write("### Summary")
     st.write(summary.get('summary', 'No summary available'))
@@ -217,7 +215,7 @@ def show():
                         if summary:
                             display_summary(summary)
                         else:
-                            st.info("No summary available yet (generated after 4 iterations)")
+                            st.info("No summary generated yet , Use the summarizer in drop down list below for fresh summary generation.")
             
             # List files in this group
             for file in files:
@@ -259,7 +257,7 @@ def show():
                 st.warning("Please select a Knowledge Graph to summarize.")
             else:
                 ldb_info = get_corresponding_ldb_info(selected_kg)
-                with st.spinner("🧠 Generating summary..."):
+                with st.spinner("🧠 Generating summary...(scroll below when finished)"):
                     result = summarize_graph_api(
                         "summarize",
                         st.session_state.chat_session_id,
@@ -291,7 +289,7 @@ def show():
     ldb_info = get_corresponding_ldb_info(selected_kg)
     st.info(f"**Selected KG:** {selected_kg}\n\n**Vector DB:** {ldb_info['ldb_path']}\n\n**Table:** {ldb_info['table_name'] or 'Default'}")
 
-    # --- Chat history display and input (NO CHANGES HERE) ---
+    
     for msg in st.session_state.chat_messages:
         display_message(msg)
 
